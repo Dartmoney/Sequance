@@ -1,0 +1,3 @@
+C:/Users/islam/CLionProjects/Laba_2/cmake-build-debug/CMakeFiles/Laba_2.dir
+C:/Users/islam/CLionProjects/Laba_2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/islam/CLionProjects/Laba_2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
