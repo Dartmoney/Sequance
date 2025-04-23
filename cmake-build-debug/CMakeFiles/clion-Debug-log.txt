@@ -1,4 +1,10 @@
-"C:\Program Files\JetBrains\CLion2024.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion2024.3/bin/ninja/win/x64/ninja.exe" -G Ninja -S C:\Users\islam\CLionProjects\Laba_2 -B C:\Users\islam\CLionProjects\Laba_2\cmake-build-debug
+"C:\Program Files\JetBrains\CLion2024.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion2024.3/bin/ninja/win/x64/ninja.exe" -DCMAKE_TOOLCHAIN_FILE=C:\Users\islam\.vcpkg-clion\vcpkg\scripts\buildsystems\vcpkg.cmake -G Ninja -S C:\Users\islam\CLionProjects\Laba_2 -B C:\Users\islam\CLionProjects\Laba_2\cmake-build-debug
 -- Configuring done (0.2s)
 -- Generating done (0.0s)
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_TOOLCHAIN_FILE
+
+
 -- Build files have been written to: C:/Users/islam/CLionProjects/Laba_2/cmake-build-debug

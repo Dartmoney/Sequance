@@ -2,10 +2,40 @@
 // Created by islam on 18.04.2025.
 //
 
-#include "Dynamic_array.h"
+#ifndef LABA_2_DYNAMIC_ARRAY_HPP
+#define LABA_2_DYNAMIC_ARRAY_HPP
+
+
 #include<iostream>
 
 using namespace std;
+
+template <typename T>
+class Dynamic_array
+{
+private:
+    int m_size;
+    int m_capacity;
+    T * m_data;
+
+public:
+    Dynamic_array();
+    Dynamic_array(const Dynamic_array<T> & a);
+    Dynamic_array(int size);
+    int DynamicArray(T* items, int count);
+    ~Dynamic_array();
+    int resize(int size);
+    void Set(int index, T value);
+    void push_back(T val) {
+        resize(m_size + 1);
+        m_data[m_size - 1] = val;
+    }
+    int size() const;
+    T & operator[] (int i){
+        return m_data[i];
+    }
+};
+
 
 template <typename T>
 Dynamic_array<T>::Dynamic_array() {
@@ -58,9 +88,33 @@ template <typename T>
 int Dynamic_array<T>::size() const{
     return m_size;
 }
+template <typename T>
+int Dynamic_array<T>::DynamicArray(T* items, int count)
+{
+    m_size = count;
+    m_capacity = m_size;
+    m_data = NULL;
+    if (m_size != 0)
+        m_data = new T[m_size];
+    else
+        m_data = 0;
+    for (int i=0;i<m_size;++i)
+    {
+        m_data[i] = items[i];
+    }
+}
+template <typename T>
+void Dynamic_array<T>::Set(int index, T value)
+{
+    if (index > m_size)
+        return;
+    m_data[index] = value;
+}
 template<typename T>
 ostream &operator<<(ostream &out, Dynamic_array<T> a) {
     for (int i = 0; i < a.size(); ++i)
         out << a[i] << " ";
     return out;
 }
+
+#endif //LABA_2_DYNAMIC_ARRAY_HPP

@@ -1,5 +1,7 @@
 #include <iostream>
-#include "Dynamic_array.h"
+#include "Dynamic_array.hpp"
+#include "Linked_List.hpp"
+#include "ListNode.h"
 template <typename T>
 class Sequence {
 public:
@@ -26,19 +28,11 @@ class ListSequnce
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main() {
     std::cout << "C++ is a general-purpose programming language with a bias towards systems programming that";
-//    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the
-//    // <b>lang</b> variable name to see how CLion can help you rename it.
-//    auto lang = "C++";
-//    std::cout << "Hello and welcome to " << lang << "!\n";
-//
-//    for (int i = 1; i <= 5; i++) {
-//        // TIP Press <shortcut actionId="Debug"/> to start debugging your code.
-//        // We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/>
-//        // breakpoint for you, but you can always add more by pressing
-//        // <shortcut actionId="ToggleLineBreakpoint"/>.
-//        std::cout << "i = " << i << std::endl;
-//    }
-
+    List<int> s;
+    s.insertBegin(8);
+    s.insertEnd(2);
+    s.insertEnd(3);
+    s.print();
     return 0;
 }
 

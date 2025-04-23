@@ -4,7 +4,7 @@ project(Laba_2)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Laba_2 main.cpp
-        Dynamic_array.cpp
-        Dynamic_array.h
-        Linked_List.cpp
-        Linked_List.h)
+        Dynamic_array.hpp
+        Linked_List.hpp
+        ListNode.h
+        All_test.cpp)
