@@ -2,8 +2,83 @@
 -- Running vcpkg install
 Detecting compiler hash for triplet x64-mingw-dynamic...
 Compiler found: C:/msys64/ucrt64/bin/x86_64-w64-mingw32-g++.exe
-All requested packages are currently installed.
-Total install time: 285 us
+The following packages will be rebuilt:
+    gtest:x64-mingw-dynamic@1.16.0#1
+    vcpkg-cmake:x64-mingw-dynamic@2024-04-23
+    vcpkg-cmake-config:x64-mingw-dynamic@2024-05-23
+Restored 0 package(s) from C:\Users\islam\AppData\Local\vcpkg\archives in 174 us. Use --debug to see more details.
+Removing 1/6 gtest:x64-mingw-dynamic
+Elapsed time to handle gtest:x64-mingw-dynamic: 10.9 ms
+Removing 2/6 vcpkg-cmake:x64-mingw-dynamic
+Elapsed time to handle vcpkg-cmake:x64-mingw-dynamic: 2.05 ms
+Removing 3/6 vcpkg-cmake-config:x64-mingw-dynamic
+Elapsed time to handle vcpkg-cmake-config:x64-mingw-dynamic: 1.63 ms
+Installing 4/6 vcpkg-cmake-config:x64-mingw-dynamic@2024-05-23...
+Building vcpkg-cmake-config:x64-mingw-dynamic@2024-05-23...
+C:\Users\islam\.vcpkg-clion\vcpkg\triplets\community\x64-mingw-dynamic.cmake: info: loaded community triplet from here. Community triplets are not built in the curated registry and are thus less likely to succeed.
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/vcpkg-cmake-config_x64-mingw-dynamic/share/vcpkg-cmake-config/vcpkg_cmake_config_fixup.cmake
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/vcpkg-cmake-config_x64-mingw-dynamic/share/vcpkg-cmake-config/vcpkg-port-config.cmake
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/vcpkg-cmake-config_x64-mingw-dynamic/share/vcpkg-cmake-config/copyright
+-- Skipping post-build validation due to VCPKG_POLICY_EMPTY_PACKAGE
+Starting submission of vcpkg-cmake-config:x64-mingw-dynamic@2024-05-23 to 1 binary cache(s) in the background
+Elapsed time to handle vcpkg-cmake-config:x64-mingw-dynamic: 36.5 ms
+vcpkg-cmake-config:x64-mingw-dynamic package ABI: f84d4b980d7997a0ae34deb831746c7cdb60b579c12e719676fa99ac308950f6
+Installing 5/6 vcpkg-cmake:x64-mingw-dynamic@2024-04-23...
+Building vcpkg-cmake:x64-mingw-dynamic@2024-04-23...
+C:\Users\islam\.vcpkg-clion\vcpkg\triplets\community\x64-mingw-dynamic.cmake: info: loaded community triplet from here. Community triplets are not built in the curated registry and are thus less likely to succeed.
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/vcpkg-cmake_x64-mingw-dynamic/share/vcpkg-cmake/vcpkg_cmake_configure.cmake
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/vcpkg-cmake_x64-mingw-dynamic/share/vcpkg-cmake/vcpkg_cmake_build.cmake
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/vcpkg-cmake_x64-mingw-dynamic/share/vcpkg-cmake/vcpkg_cmake_install.cmake
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/vcpkg-cmake_x64-mingw-dynamic/share/vcpkg-cmake/vcpkg-port-config.cmake
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/vcpkg-cmake_x64-mingw-dynamic/share/vcpkg-cmake/copyright
+-- Performing post-build validation
+Starting submission of vcpkg-cmake:x64-mingw-dynamic@2024-04-23 to 1 binary cache(s) in the background
+Elapsed time to handle vcpkg-cmake:x64-mingw-dynamic: 35.3 ms
+vcpkg-cmake:x64-mingw-dynamic package ABI: bf800575be1db0862a77864ac6246b157a983722fab0430fba1d87fb55601cf5
+Completed submission of vcpkg-cmake-config:x64-mingw-dynamic@2024-05-23 to 1 binary cache(s) in 28.4 ms
+Installing 6/6 gtest:x64-mingw-dynamic@1.16.0#1...
+Building gtest:x64-mingw-dynamic@1.16.0#1...
+C:\Users\islam\.vcpkg-clion\vcpkg\triplets\community\x64-mingw-dynamic.cmake: info: loaded community triplet from here. Community triplets are not built in the curated registry and are thus less likely to succeed.
+-- Using cached google-googletest-v1.16.0.tar.gz
+-- Cleaning sources at C:/Users/islam/.vcpkg-clion/vcpkg/buildtrees/gtest/src/v1.16.0-a2e0b328c1.clean. Use --editable to skip cleaning for the packages you specify.
+-- Extracting source C:/Users/islam/.vcpkg-clion/vcpkg/downloads/google-googletest-v1.16.0.tar.gz
+-- Applying patch 001-fix-UWP-death-test.patch
+-- Applying patch clang-tidy-no-lint.patch
+-- Applying patch fix-main-lib-path.patch
+-- Using source at C:/Users/islam/.vcpkg-clion/vcpkg/buildtrees/gtest/src/v1.16.0-a2e0b328c1.clean
+-- Configuring x64-mingw-dynamic
+-- Building x64-mingw-dynamic-dbg
+-- Building x64-mingw-dynamic-rel
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest.cc
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest_main.cc
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest-all.cc
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest-assertion-result.cc
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest-death-test.cc
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest-filepath.cc
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest-internal-inl.h
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest-matchers.cc
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest-port.cc
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest-printers.cc
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest-test-part.cc
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/src/gtest-typed-test.cc
+-- Fixing pkgconfig file: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/lib/pkgconfig/gmock.pc
+-- Fixing pkgconfig file: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/lib/pkgconfig/gmock_main.pc
+-- Fixing pkgconfig file: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/lib/pkgconfig/gtest.pc
+-- Fixing pkgconfig file: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/lib/pkgconfig/gtest_main.pc
+-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~2.3.0-1-any.pkg.tar.zst
+-- Using cached msys2-msys2-runtime-3.5.4-2-x86_64.pkg.tar.zst
+-- Using msys root at C:/Users/islam/.vcpkg-clion/vcpkg/downloads/tools/msys2/21caed2f81ec917b
+-- Fixing pkgconfig file: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/debug/lib/pkgconfig/gmock.pc
+-- Fixing pkgconfig file: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/debug/lib/pkgconfig/gmock_main.pc
+-- Fixing pkgconfig file: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/debug/lib/pkgconfig/gtest.pc
+-- Fixing pkgconfig file: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/debug/lib/pkgconfig/gtest_main.pc
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/share/gtest/copyright
+-- Installing: C:/Users/islam/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic/share/gtest/usage
+-- Performing post-build validation
+Starting submission of gtest:x64-mingw-dynamic@1.16.0#1 to 1 binary cache(s) in the background
+Elapsed time to handle gtest:x64-mingw-dynamic: 26 s
+gtest:x64-mingw-dynamic package ABI: 0a5117d97cd4a3eb1a7de490dbd032936f4b321f33321900bbdbcd2f58d027aa
+Total install time: 26 s
 The package gtest is compatible with built-in CMake targets:
 
     enable_testing()
@@ -13,7 +88,10 @@ The package gtest is compatible with built-in CMake targets:
     
     add_test(AllTestsInMain main)
 
+Completed submission of vcpkg-cmake:x64-mingw-dynamic@2024-04-23 to 1 binary cache(s) in 25.9 ms
+Waiting for 1 remaining binary cache submissions...
+Completed submission of gtest:x64-mingw-dynamic@1.16.0#1 to 1 binary cache(s) in 418 ms (1/1)
 -- Running vcpkg install - done
--- Configuring done (1.9s)
+-- Configuring done (30.2s)
 -- Generating done (0.0s)
 -- Build files have been written to: C:/Users/islam/CLionProjects/Laba_2/cmake-build-debug

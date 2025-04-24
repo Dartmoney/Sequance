@@ -11,7 +11,8 @@ add_executable(Laba_2 main.cpp
         Error.hpp
         All_test.hpp
         Sequance.hpp
-        ArraySequence.hpp)
+        ArraySequence.hpp
+        ArrayList.hpp)
 find_package(GTest REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE GTest::GTest GTest::Main)
 target_include_directories(${PROJECT_NAME} PRIVATE ${GTEST_INCLUDE_DIRS})

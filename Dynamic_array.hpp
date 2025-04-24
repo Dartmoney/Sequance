@@ -22,7 +22,7 @@ public:
     Dynamic_array();
     Dynamic_array(const Dynamic_array<T> & a);
     Dynamic_array(int size);
-    void DynamicArray(T* items, int count);
+    Dynamic_array(T* items, int count);
     ~Dynamic_array();
     void resize(int size);
     void Set(int index, T value);
@@ -91,7 +91,7 @@ int Dynamic_array<T>::size() const{
     return m_size;
 }
 template <typename T>
-void Dynamic_array<T>::DynamicArray(T* items, int count)
+Dynamic_array<T>::Dynamic_array(T* items, int count)
 {
     m_size = count;
     m_capacity = m_size;

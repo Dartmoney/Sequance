@@ -5,9 +5,9 @@
 //    protected:
 //    Dynamic_arrayTest(){
 //        int  s[5] = {1,2,3,4,5};
-//        da1.DynamicArray(s,5);
+//        da1.Dynamic_array(s,5);
 //        string k[5] = {"peppe","banana","kaka","poki","doki"};
-//        da2.DynamicArray(k,5);
+//        da2.Dynamic_array(k,5);
 //    }
 //    Dynamic_array<int> da0;
 //    Dynamic_array<int> da1;
