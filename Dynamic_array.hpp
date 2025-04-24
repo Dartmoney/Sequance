@@ -7,7 +7,7 @@
 
 
 #include<iostream>
-
+#include "Error.hpp"
 using namespace std;
 
 template <typename T>
@@ -22,9 +22,9 @@ public:
     Dynamic_array();
     Dynamic_array(const Dynamic_array<T> & a);
     Dynamic_array(int size);
-    int DynamicArray(T* items, int count);
+    void DynamicArray(T* items, int count);
     ~Dynamic_array();
-    int resize(int size);
+    void resize(int size);
     void Set(int index, T value);
     void push_back(T val) {
         resize(m_size + 1);
@@ -32,6 +32,8 @@ public:
     }
     int size() const;
     T & operator[] (int i){
+        if ((i>=m_size) || (i<0))
+            throw IndexOutOfRange();
         return m_data[i];
     }
 };
@@ -66,7 +68,7 @@ Dynamic_array<T>::Dynamic_array(int size) {
 }
 
 template <typename T>
-int Dynamic_array<T>::resize(int size) {
+void Dynamic_array<T>::resize(int size) {
     if (size > m_capacity) {
         int new_capacity = max(size, m_size * 2);
         T *new_data = new T[new_capacity];
@@ -89,7 +91,7 @@ int Dynamic_array<T>::size() const{
     return m_size;
 }
 template <typename T>
-int Dynamic_array<T>::DynamicArray(T* items, int count)
+void Dynamic_array<T>::DynamicArray(T* items, int count)
 {
     m_size = count;
     m_capacity = m_size;
@@ -102,12 +104,13 @@ int Dynamic_array<T>::DynamicArray(T* items, int count)
     {
         m_data[i] = items[i];
     }
+
 }
 template <typename T>
 void Dynamic_array<T>::Set(int index, T value)
 {
-    if (index > m_size)
-        return;
+    if (index >= m_size)
+        throw IndexOutOfRange();
     m_data[index] = value;
 }
 template<typename T>

@@ -6,6 +6,7 @@
 #define LABA_2_LINKED_LIST_HPP
 #include "ListNode.h"
 #include <iostream>
+#include "Error.hpp"
 using namespace std;
 
 template <typename T>
@@ -28,6 +29,7 @@ public:
     T GetFirst();
     T Get(int index);
     void InsertAt(T item, int index);
+    List<T>* Concat(List<T> *list);
 //    List<T>* Concat(List<T> *list);
 private:
     ListNode<T> *startPtr; //stores the pointer of first object in the linked list
@@ -39,6 +41,7 @@ List<T>::List() //creates list with start and end as NULL
 {
     startPtr = NULL;
     endPtr = NULL;
+    len = 0;
 }
 
 template <typename T>
@@ -184,14 +187,14 @@ int List<T>::GetLength() {
 template <typename T>
 T List<T>::GetLast() {
     if (isEmpty())
-        return "IndexError";
-    return endPtr;
+        throw IndexOutOfRange();
+    return endPtr->getData();
 }
 template <typename T>
 T List<T>::GetFirst() {
     if (isEmpty())
-        return "IndexError";
-    return startPtr;
+        throw IndexOutOfRange();
+    return startPtr->getData();
 }
 
 template <typename T>
@@ -205,15 +208,14 @@ List<T>::List(T *items, int count) {
 template <typename T>
 T List<T>::Get(int index)
 {
-    if (index > len)
-        return "IndexError";
-    T s;
-    s = startPtr;
+    if ((index >= len) || (index < 0))
+        throw IndexOutOfRange();
+    ListNode<T>* s = startPtr;
     for (int i=0;i<index;i++)
     {
         s = s->nextPtr;
     }
-    return s;
+    return s->getData();
 }
 template <typename T>
 List<T>::List(List<T> &list) {
@@ -230,12 +232,20 @@ List<T>::List(List<T> &list) {
 template <typename T>
 void List<T>::InsertAt(T item, int index)
 {
-    T s;
+    ListNode<T>* s;
     s = startPtr;
     for (int i=0;i<index;i++)
     {
         s = s->nextPtr;
     }
-    s.data = item;
+    s->data = item;
 }
+
+template<typename T>
+List<T> *List<T>::Concat(List<T> *list) {
+    for (int i=0;i<list->GetLength();i++) {
+        insertBegin(list->Get(i));
+    }
+}
+
 #endif //LABA_2_LINKED_LIST_HPP

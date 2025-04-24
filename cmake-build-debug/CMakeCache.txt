@@ -245,6 +245,9 @@ CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=C:\Users\islam\.vcpkg-clion\vcpkg\scripts\bui
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//The directory containing a CMake configuration file for GTest.
+GTest_DIR:PATH=C:/Users/islam/CLionProjects/Laba_2/cmake-build-debug/vcpkg_installed/x64-mingw-dynamic/share/gtest
+
 //Value Computed by CMake
 Laba_2_BINARY_DIR:STATIC=C:/Users/islam/CLionProjects/Laba_2/cmake-build-debug
 
@@ -258,15 +261,34 @@ Laba_2_SOURCE_DIR:STATIC=C:/Users/islam/CLionProjects/Laba_2
 // executables.
 VCPKG_APPLOCAL_DEPS:BOOL=ON
 
+//Additional options to bootstrap vcpkg
+VCPKG_BOOTSTRAP_OPTIONS:STRING=
+
 //The directory which contains the installed libraries for each
 // triplet
-VCPKG_INSTALLED_DIR:PATH=C:/Users/islam/.vcpkg-clion/vcpkg/installed
+VCPKG_INSTALLED_DIR:PATH=C:/Users/islam/CLionProjects/Laba_2/cmake-build-debug/vcpkg_installed
+
+//Additional install options to pass to vcpkg
+VCPKG_INSTALL_OPTIONS:STRING=
 
 //The path to the vcpkg manifest directory.
-VCPKG_MANIFEST_DIR:PATH=
+VCPKG_MANIFEST_DIR:PATH=C:/Users/islam/CLionProjects/Laba_2
+
+//Install the dependencies listed in your manifest:
+//\n    If this is off, you will have to manually install your dependencies.
+//\n    See https://github.com/microsoft/vcpkg/tree/master/docs/specifications/manifests.md
+// for more info.
+//\n
+VCPKG_MANIFEST_INSTALL:BOOL=ON
 
 //Use manifest mode, as opposed to classic mode.
-VCPKG_MANIFEST_MODE:BOOL=OFF
+VCPKG_MANIFEST_MODE:BOOL=ON
+
+//Overlay ports to use for vcpkg install in manifest mode
+VCPKG_OVERLAY_PORTS:STRING=
+
+//Overlay triplets to use for vcpkg install in manifest mode
+VCPKG_OVERLAY_TRIPLETS:STRING=
 
 //Appends the vcpkg paths to CMAKE_PREFIX_PATH, CMAKE_LIBRARY_PATH
 // and CMAKE_FIND_ROOT_PATH so that vcpkg libraries/packages are
@@ -277,7 +299,7 @@ VCPKG_PREFER_SYSTEM_LIBS:BOOL=OFF
 VCPKG_SETUP_CMAKE_PROGRAM_PATH:BOOL=ON
 
 //Vcpkg target triplet (ex. x86-windows)
-VCPKG_TARGET_TRIPLET:STRING=x64-windows
+VCPKG_TARGET_TRIPLET:STRING=x64-mingw-dynamic
 
 //Trace calls to find_package()
 VCPKG_TRACE_FIND_PACKAGE:BOOL=OFF
@@ -297,14 +319,11 @@ X_VCPKG_APPLOCAL_DEPS_SERIALIZED:BOOL=OFF
 Z_VCPKG_BUILTIN_POWERSHELL_PATH:FILEPATH=C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
 
 //Path to a program.
-Z_VCPKG_CL:FILEPATH=Z_VCPKG_CL-NOTFOUND
-
-//Path to a program.
 Z_VCPKG_PWSH_PATH:FILEPATH=Z_VCPKG_PWSH_PATH-NOTFOUND
 
 //The directory which contains the installed libraries for each
 // triplet
-_VCPKG_INSTALLED_DIR:PATH=C:/Users/islam/.vcpkg-clion/vcpkg/installed
+_VCPKG_INSTALLED_DIR:PATH=C:/Users/islam/CLionProjects/Laba_2/cmake-build-debug/vcpkg_installed
 
 
 ########################
@@ -467,16 +486,12 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_TOOLCHAIN_FILE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
-//Install the dependencies listed in your manifest:
-//\n    If this is off, you will have to manually install your dependencies.
-//\n    See https://github.com/microsoft/vcpkg/tree/master/docs/specifications/manifests.md
-// for more info.
-//\n
-VCPKG_MANIFEST_INSTALL:INTERNAL=OFF
+//Details about finding GTest
+FIND_PACKAGE_MESSAGE_DETAILS_GTest:INTERNAL=[C:/Users/islam/CLionProjects/Laba_2/cmake-build-debug/vcpkg_installed/x64-mingw-dynamic/share/gtest/GTestConfig.cmake][c ][v1.16.0()]
 //ADVANCED property for variable: VCPKG_VERBOSE
 VCPKG_VERBOSE-ADVANCED:INTERNAL=1
 //Making sure VCPKG_MANIFEST_MODE doesn't change
-Z_VCPKG_CHECK_MANIFEST_MODE:INTERNAL=OFF
+Z_VCPKG_CHECK_MANIFEST_MODE:INTERNAL=ON
 //The path to the PowerShell implementation to use.
 Z_VCPKG_POWERSHELL_PATH:INTERNAL=C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
 //Vcpkg root directory
