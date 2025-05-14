@@ -1,0 +1,15 @@
+{
+  "name" : "laba3",
+  "version-string" : "1.0.0",
+  "builtin-baseline" : "38d9cf0bd45404cd25aeb03f79bcb0af256de343",
+  "dependencies" : [ {
+    "name" : "vcpkg-cmake-config",
+    "version>=" : "2024-05-23"
+  }, {
+    "name" : "vcpkg-cmake",
+    "version>=" : "2024-04-23"
+  }, {
+    "name" : "gtest",
+    "version>=" : "1.17.0#1"
+  } ]
+}

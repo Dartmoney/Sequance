@@ -1,0 +1,20 @@
+"C:\Program Files\JetBrains\CLion2024.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion2024.3/bin/ninja/win/x64/ninja.exe" -DCMAKE_TOOLCHAIN_FILE=C:\Users\islam\.vcpkg-clion\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-mingw-dynamic -G Ninja -S C:\Users\islam\CLionProjects\Laba3 -B C:\Users\islam\CLionProjects\Laba3\cmake-build-debug
+-- Running vcpkg install
+Detecting compiler hash for triplet x64-mingw-dynamic...
+Compiler found: C:/Qt/Tools/mingw1310_64/bin/x86_64-w64-mingw32-g++.exe
+All requested packages are currently installed.
+Total install time: 365 us
+The package gtest is compatible with built-in CMake targets:
+
+    enable_testing()
+    
+    find_package(GTest CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+    
+    add_test(AllTestsInMain main)
+
+-- Running vcpkg install - done
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (2.7s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/islam/CLionProjects/Laba3/cmake-build-debug

@@ -1,0 +1,13 @@
+Detecting compiler hash for triplet x64-mingw-dynamic...
+Compiler found: C:/Qt/Tools/mingw1310_64/bin/x86_64-w64-mingw32-g++.exe
+All requested packages are currently installed.
+Total install time: 365 us
+The package gtest is compatible with built-in CMake targets:
+
+    enable_testing()
+    
+    find_package(GTest CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+    
+    add_test(AllTestsInMain main)
+
