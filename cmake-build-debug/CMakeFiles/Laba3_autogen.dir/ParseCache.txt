@@ -252,6 +252,8 @@ C:/Users/islam/CLionProjects/Laba3/mainwindow.hpp
  mdp:C:/Users/islam/CLionProjects/Laba3/Error.hpp
  mdp:C:/Users/islam/CLionProjects/Laba3/Linked_List.hpp
  mdp:C:/Users/islam/CLionProjects/Laba3/ListNode.h
+ mdp:C:/Users/islam/CLionProjects/Laba3/Matrix.hpp
+ mdp:C:/Users/islam/CLionProjects/Laba3/Sequance.hpp
  mdp:C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/moc_predefs.h
  mdp:C:/Users/islam/CLionProjects/Laba3/mainwindow.hpp
  mdp:C:/Users/islam/CLionProjects/Laba3/ui/ui_mainwindow.h
@@ -336,6 +338,7 @@ C:/Users/islam/CLionProjects/Laba3/mainwindow.hpp
  mdp:C:/msys64/ucrt64/include/qt6/QtCore/qprocessordetection.h
  mdp:C:/msys64/ucrt64/include/qt6/QtCore/qrect.h
  mdp:C:/msys64/ucrt64/include/qt6/QtCore/qrefcount.h
+ mdp:C:/msys64/ucrt64/include/qt6/QtCore/qregularexpression.h
  mdp:C:/msys64/ucrt64/include/qt6/QtCore/qscopedpointer.h
  mdp:C:/msys64/ucrt64/include/qt6/QtCore/qscopeguard.h
  mdp:C:/msys64/ucrt64/include/qt6/QtCore/qset.h
@@ -418,19 +421,23 @@ C:/Users/islam/CLionProjects/Laba3/mainwindow.hpp
  mdp:C:/msys64/ucrt64/include/qt6/QtGui/qtguiexports.h
  mdp:C:/msys64/ucrt64/include/qt6/QtGui/qtguiglobal.h
  mdp:C:/msys64/ucrt64/include/qt6/QtGui/qtransform.h
+ mdp:C:/msys64/ucrt64/include/qt6/QtGui/qvalidator.h
  mdp:C:/msys64/ucrt64/include/qt6/QtGui/qwindowdefs.h
  mdp:C:/msys64/ucrt64/include/qt6/QtGui/qwindowdefs_win.h
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/QApplication
+ mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/QDoubleSpinBox
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/QLabel
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/QMainWindow
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/QMenuBar
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/QMessageBox
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/QPushButton
+ mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/QStackedWidget
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/QStatusBar
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/QTextEdit
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/QWidget
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qabstractbutton.h
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qabstractscrollarea.h
+ mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qabstractspinbox.h
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qapplication.h
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qdialog.h
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qdialogbuttonbox.h
@@ -442,6 +449,8 @@ C:/Users/islam/CLionProjects/Laba3/mainwindow.hpp
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qmessagebox.h
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qpushbutton.h
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qsizepolicy.h
+ mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qspinbox.h
+ mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qstackedwidget.h
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qstatusbar.h
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qtabwidget.h
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qtextedit.h
@@ -451,7 +460,7 @@ C:/Users/islam/CLionProjects/Laba3/mainwindow.hpp
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qwidget.h
  uic:ui/ui_mainwindow.h
 C:/Users/islam/CLionProjects/Laba3/main.cpp
-C:/Users/islam/CLionProjects/Laba3/mainwindow.cpp
-C:/Users/islam/CLionProjects/Laba3/Linked_List.hpp
 C:/Users/islam/CLionProjects/Laba3/ListNode.h
+C:/Users/islam/CLionProjects/Laba3/Linked_List.hpp
+C:/Users/islam/CLionProjects/Laba3/mainwindow.cpp
 C:/Users/islam/CLionProjects/Laba3/Dynamic_array.hpp

@@ -22,7 +22,14 @@ public:
 
     Matrix() : array(new Dynamic_array<T>()), size(0) {}
 
-    explicit Matrix(int n) : array(new Dynamic_array<T>(n * n)), size(n) {}
+    explicit Matrix(int n)
+            : array(new Dynamic_array<T>()), size(n)
+    {
+        array->resize(n * n);
+        for (int i = 0; i < n * n; ++i) {
+            (*array)[i] = T(n);
+        }
+    }
 
     Matrix(T *items, int count, int n) : array(new Dynamic_array<T>(items, count, n * n)), size(n) {}
 
@@ -90,7 +97,7 @@ public:
     Sequence<T> *InsertAt(T item, int index) override {
         if (index < 0 || index > array->size())
             throw IndexOutOfRange();
-        array->Set(item, index);
+        array->Set(index, item);
         return this;
     }
 
@@ -119,14 +126,14 @@ public:
     }
     Matrix& operator=(const Matrix& other) {
         if (this == &other)
-            return *this;  // защита от самоприсваивания
+            return *this;
 
-        delete array;  // освобождаем старую память
-        array = new Dynamic_array<T>(*other.array);  // глубокое копирование
+        delete array;
+        array = new Dynamic_array<T>(*other.array);
         size = other.size;
         return *this;
     }
-    // Операции над матрицами
+
     Matrix operator+(const Matrix &obj) const {
         if (obj.size != size)
             throw IndexOutOfRange();

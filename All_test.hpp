@@ -113,50 +113,84 @@ TEST_F(Linked_ListTest, VoidFuncWork) {
     EXPECT_EQ(ls2.GetFirst(), "100");
 }
 
-int test(int argc, char *argv[]) {
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
 
 class MatrixTest : public testing::Test {
 protected:
     MatrixTest() {
-        m.resize(5);
-        m1.resize(5);
+        m3.resize(5);
+        m4.resize(5);
         for (int i = 0; i < 25; i++) {
+            m3.InsertAt(i, i);
+            m4.InsertAt(i, i);
+        }
+        m = Matrix<int>(3);
+        for (int i = 0; i < 9; ++i) {
             m.InsertAt(i, i);
-            m1.InsertAt(i, i);
+        }
+        m2 = Matrix<int>(3);
+
+        for (int i = 0; i < 9; ++i) {
+            m2.InsertAt(5, i);
         }
     }
-
     Matrix<int> m;
-    Matrix<int> m1;
     Matrix<int> m2;
+    Matrix<int> m3;
+    Matrix<int> m4;
+    Matrix<int> m5;
 };
 
 TEST_F(MatrixTest, sumtest) {
-    m2 = m + m1;
+    m5 = m3 + m4;
     for (int i = 0; i < 25; i++) {
-        EXPECT_EQ(m2[i], i * 2);
+        EXPECT_EQ(m5[i], i * 2);
     }
 }
 
+
+TEST_F(MatrixTest, OperatorIndexing) {
+    for (int i = 0; i < 9; ++i) {
+        EXPECT_EQ(m[i], i);
+        EXPECT_EQ(m.Get(i), i);
+    }
+    EXPECT_THROW(m[-1], IndexOutOfRange);
+    EXPECT_THROW(m[9], IndexOutOfRange);
+}
+
+
+TEST_F(MatrixTest, MultiplyScalar) {
+    Matrix<int> prod = m * 2;
+    for (int i = 0; i < 9; ++i) {
+        EXPECT_EQ(prod[i], i * 2);
+    }
+}
+
+TEST_F(MatrixTest, Norm) {
+    // Norm is max row sum
+    // Rows: [0+1+2=3, 3+4+5=12, 6+7+8=21]
+    EXPECT_EQ(m.norm(), 21);
+    EXPECT_EQ(m2.norm(), 5*3);
+}
 TEST_F(MatrixTest, multiplicationtest) {
-    m2 = m1 * 3;
+    m5 = m4 * 3;
     for (int i = 0; i < 25; i++) {
-        EXPECT_EQ(m2[i], i * 3);
+        EXPECT_EQ(m5[i], i * 3);
     }
 }
 
 TEST_F(MatrixTest, elementarytest) {
-    m1.elementary(0, 1);
+    m4.elementary(0, 1);
     for (int i = 0; i < 5; i++) {
-        EXPECT_EQ(m1[i], i + i + 5);
+        EXPECT_EQ(m4[i], i + i + 5);
     }
-    m2.elementary(0,1,-1);
+    m3.elementary(0,1,-1);
     for (int i = 0; i < 5; i++) {
-        EXPECT_EQ(m2[i], i - i - 5);
+        EXPECT_EQ(m3[i], i - i - 5);
     }
+}
+int test(int argc, char *argv[]) {
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
 
 #endif //LABA_2_ALL_TEST_HPP

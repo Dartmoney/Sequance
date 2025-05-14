@@ -251,6 +251,8 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/Users/islam/CLionProjects/Laba3/Error.hpp \
   C:/Users/islam/CLionProjects/Laba3/Linked_List.hpp \
   C:/Users/islam/CLionProjects/Laba3/ListNode.h \
+  C:/Users/islam/CLionProjects/Laba3/Matrix.hpp \
+  C:/Users/islam/CLionProjects/Laba3/Sequance.hpp \
   C:/Users/islam/CLionProjects/Laba3/ui/ui_mainwindow.h \
   C:/msys64/ucrt64/include/qt6/QtCore/QVariant \
   C:/msys64/ucrt64/include/qt6/QtCore/q20functional.h \
@@ -333,6 +335,7 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/msys64/ucrt64/include/qt6/QtCore/qprocessordetection.h \
   C:/msys64/ucrt64/include/qt6/QtCore/qrect.h \
   C:/msys64/ucrt64/include/qt6/QtCore/qrefcount.h \
+  C:/msys64/ucrt64/include/qt6/QtCore/qregularexpression.h \
   C:/msys64/ucrt64/include/qt6/QtCore/qscopedpointer.h \
   C:/msys64/ucrt64/include/qt6/QtCore/qscopeguard.h \
   C:/msys64/ucrt64/include/qt6/QtCore/qset.h \
@@ -415,19 +418,23 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/msys64/ucrt64/include/qt6/QtGui/qtguiexports.h \
   C:/msys64/ucrt64/include/qt6/QtGui/qtguiglobal.h \
   C:/msys64/ucrt64/include/qt6/QtGui/qtransform.h \
+  C:/msys64/ucrt64/include/qt6/QtGui/qvalidator.h \
   C:/msys64/ucrt64/include/qt6/QtGui/qwindowdefs.h \
   C:/msys64/ucrt64/include/qt6/QtGui/qwindowdefs_win.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QApplication \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/QDoubleSpinBox \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QLabel \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMainWindow \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMenuBar \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMessageBox \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QPushButton \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/QStackedWidget \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QStatusBar \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QTextEdit \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QWidget \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qabstractbutton.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qabstractscrollarea.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qabstractspinbox.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qapplication.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qdialog.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qdialogbuttonbox.h \
@@ -439,6 +446,8 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmessagebox.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qpushbutton.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qsizepolicy.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qspinbox.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qstackedwidget.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qstatusbar.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qtabwidget.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qtextedit.h \
