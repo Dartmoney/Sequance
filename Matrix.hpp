@@ -181,6 +181,14 @@ public:
                 (*array)[base + i] += (*array)[add + i] * scalar;
         }
     }
+
+    void map(T func)
+    {
+        for (int i =0;i<size*size;i++)
+        {
+            this->InsertAt(func(this->Get(i),i));
+        }
+    }
 };
 
 

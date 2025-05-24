@@ -20,7 +20,9 @@ add_executable(Laba3 main.cpp
         mainwindow.cpp
         Dynamic_array.hpp
         Linked_List.hpp
-        ListNode.h)
+        ListNode.h
+        TreeNode.hpp
+        Tree.hpp)
 target_link_libraries(Laba3
         Qt::Core
         Qt::Gui

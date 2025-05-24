@@ -9,6 +9,8 @@
 #include "Linked_List.hpp"
 #include "Dynamic_array.hpp"
 #include "Matrix.hpp"
+#include "Tree.hpp"
+#include <vector>
 
 class Dynamic_arrayTest : public testing::Test {
 protected:
@@ -166,8 +168,6 @@ TEST_F(MatrixTest, MultiplyScalar) {
 }
 
 TEST_F(MatrixTest, Norm) {
-    // Norm is max row sum
-    // Rows: [0+1+2=3, 3+4+5=12, 6+7+8=21]
     EXPECT_EQ(m.norm(), 21);
     EXPECT_EQ(m2.norm(), 5*3);
 }
@@ -188,6 +188,260 @@ TEST_F(MatrixTest, elementarytest) {
         EXPECT_EQ(m3[i], i - i - 5);
     }
 }
+
+class MinHeapTest : public ::testing::Test {
+protected:
+    BinaryHeapPtr<int> heap{BinaryHeapPtr<int>::Order::MIN};
+
+    void SetUp() override {
+        heap.insert(5);
+        heap.insert(3);
+        heap.insert(8);
+        heap.insert(1);
+        heap.insert(4);
+    }
+};
+
+TEST_F(MinHeapTest, ContainsExisting) {
+    EXPECT_TRUE(heap.contains(5));
+    EXPECT_TRUE(heap.contains(1));
+    EXPECT_TRUE(heap.contains(8));
+}
+
+TEST_F(MinHeapTest, ContainsNonExisting) {
+    EXPECT_FALSE(heap.contains(0));
+    EXPECT_FALSE(heap.contains(10));
+}
+
+TEST_F(MinHeapTest, ExtractRootSequence) {
+    std::vector<int> expected = {1, 3, 4, 5, 8};
+    for (int exp : expected) {
+        EXPECT_EQ(heap.extractRoot(), exp);
+    }
+    EXPECT_THROW(heap.extractRoot(), std::out_of_range);
+}
+
+TEST_F(MinHeapTest, InsertDuplicates) {
+    heap.insert(3);
+    heap.insert(1);
+    std::vector<int> extracted;
+    while (true) {
+        try {
+            extracted.push_back(heap.extractRoot());
+        } catch (const std::out_of_range&) {
+            break;
+        }
+    }
+    std::vector<int> expected = {1, 1, 3, 3, 4, 5, 8};
+    EXPECT_EQ(extracted, expected);
+}
+
+TEST(BinaryHeapPtrMaxTest, MaxOrderBehavior) {
+    BinaryHeapPtr<int> maxHeap{BinaryHeapPtr<int>::Order::MAX};
+    maxHeap.insert(5);
+    maxHeap.insert(2);
+    maxHeap.insert(9);
+    maxHeap.insert(1);
+
+    EXPECT_TRUE(maxHeap.contains(9));
+    EXPECT_TRUE(maxHeap.contains(1));
+    EXPECT_FALSE(maxHeap.contains(3));
+
+    EXPECT_EQ(maxHeap.extractRoot(), 9);
+    EXPECT_EQ(maxHeap.extractRoot(), 5);
+    EXPECT_EQ(maxHeap.extractRoot(), 2);
+    EXPECT_EQ(maxHeap.extractRoot(), 1);
+    EXPECT_THROW(maxHeap.extractRoot(), std::out_of_range);
+}
+
+TEST(BinaryHeapPtrEmptyTest, ContainsOnEmpty) {
+    BinaryHeapPtr<int> emptyHeap;
+    EXPECT_FALSE(emptyHeap.contains(42));
+}
+
+TEST(BinaryHeapPtrEmptyTest, ExtractOnEmptyThrows) {
+    BinaryHeapPtr<int> emptyHeap;
+    EXPECT_THROW(emptyHeap.extractRoot(), std::out_of_range);
+}
+
+
+class MinHeapArrayTest : public ::testing::Test {
+protected:
+    // тестируем BinaryHeapArray<int>
+    BinaryHeapArray<int> heap;
+
+    void SetUp() override {
+        // наполним кучю значениями
+        heap.insert(5);
+        heap.insert(3);
+        heap.insert(8);
+        heap.insert(1);
+        heap.insert(4);
+    }
+};
+
+TEST_F(MinHeapArrayTest, ContainsExisting) {
+    EXPECT_TRUE(heap.contains(5));
+    EXPECT_TRUE(heap.contains(1));
+    EXPECT_TRUE(heap.contains(8));
+}
+
+TEST_F(MinHeapArrayTest, ContainsNonExisting) {
+    EXPECT_FALSE(heap.contains(0));
+    EXPECT_FALSE(heap.contains(10));
+}
+
+TEST_F(MinHeapArrayTest, ExtractRootSequence) {
+    // для min-heap извлечение корня даёт отсортированную по возрастанию последовательность
+    std::vector<int> expected = {1, 3, 4, 5, 8};
+    for (int exp : expected) {
+        EXPECT_EQ(heap.extractRoot(), exp);
+    }
+    // после опустошения должна бросать исключение
+    EXPECT_THROW(heap.extractRoot(), std::out_of_range);
+}
+
+TEST_F(MinHeapArrayTest, InsertDuplicates) {
+    // дублирование элементов допустимо
+    heap.insert(3);
+    heap.insert(1);
+
+    std::vector<int> extracted;
+    // извлечём все до исключения
+    while (true) {
+        try {
+            extracted.push_back(heap.extractRoot());
+        } catch (const std::out_of_range&) {
+            break;
+        }
+    }
+
+    // изначально {1,3,4,5,8}, затем дубли {1,3}
+    std::vector<int> expected = {1, 1, 3, 3, 4, 5, 8};
+    EXPECT_EQ(extracted, expected);
+}
+
+TEST(BinaryHeapArrayEmptyTest, ContainsOnEmpty) {
+    BinaryHeapArray<int> emptyHeap;
+    EXPECT_FALSE(emptyHeap.contains(42));
+}
+
+TEST(BinaryHeapArrayEmptyTest, ExtractOnEmptyThrows) {
+    BinaryHeapArray<int> emptyHeap;
+    EXPECT_THROW(emptyHeap.extractRoot(), std::out_of_range);
+}
+
+template <typename T>
+std::vector<T> toStdVector(const Dynamic_array<T>& arr) {
+    std::vector<T> v;
+    for (int i = 0; i < arr.size(); ++i) {
+        v.push_back(arr[i]);
+    }
+    return v;
+}
+
+class TreeTest : public ::testing::Test {
+protected:
+    Tree<int> tree;
+
+    void SetUp() override {
+        std::vector<int> vals = {5, 3, 7, 2, 4, 6, 8};
+        for (int v : vals) {
+            tree.insertNewNode(v);
+        }
+    }
+};
+
+TEST_F(TreeTest, IsEmptyOnNonEmpty) {
+    EXPECT_FALSE(tree.isEmpty());
+}
+
+TEST(TreeEmptyTest, IsEmptyOnEmpty) {
+    Tree<int> empty;
+    EXPECT_TRUE(empty.isEmpty());
+}
+
+TEST_F(TreeTest, SearchExisting) {
+    TreeNode<int>* n = tree.search(4);
+    ASSERT_NE(n, nullptr);
+    EXPECT_EQ(n->getData(), 4);
+}
+
+TEST_F(TreeTest, SearchNonExisting) {
+    EXPECT_EQ(tree.search(100), nullptr);
+    EXPECT_EQ(tree.search(0), nullptr);
+}
+
+TEST_F(TreeTest, PreOrderTraversal) {
+    // КЛП: 5,3,2,4,7,6,8
+    auto arr = tree.preOrderPrint();
+    std::vector<int> expected = {5,3,2,4,7,6,8};
+    EXPECT_EQ(toStdVector(arr), expected);
+}
+
+TEST_F(TreeTest, InOrderTraversal) {
+    // ЛКП: 2,3,4,5,6,7,8
+    auto arr = tree.inOrderPrint();
+    std::vector<int> expected = {2,3,4,5,6,7,8};
+    EXPECT_EQ(toStdVector(arr), expected);
+}
+
+TEST_F(TreeTest, PostOrderTraversal) {
+    // ЛПК: 2,4,3,6,8,7,5
+    auto arr = tree.postOrderPrint();
+    std::vector<int> expected = {2,4,3,6,8,7,5};
+    EXPECT_EQ(toStdVector(arr), expected);
+}
+
+TEST_F(TreeTest, RootRightLeftTraversal) {
+    // КПЛ: root, right, left => 5,7,8,6,3,4,2
+    auto arr = tree.rootRightLeftPrint();
+    std::vector<int> expected = {5,7,8,6,3,4,2};
+    EXPECT_EQ(toStdVector(arr), expected);
+}
+
+TEST_F(TreeTest, RightRootLeftTraversal) {
+    // ПКЛ: right, root, left => 8,7,6,5,4,3,2
+    auto arr = tree.rightRootLeftPrint();
+    std::vector<int> expected = {8,7,6,5,4,3,2};
+    EXPECT_EQ(toStdVector(arr), expected);
+}
+
+TEST_F(TreeTest, RightLeftRootTraversal) {
+    // ПЛК: right, left, root => 8,6,7,4,2,3,5
+    auto arr = tree.rightLeftRootPrint();
+    std::vector<int> expected = {8,6,7,4,2,3,5};
+    EXPECT_EQ(toStdVector(arr), expected);
+}
+
+TEST_F(TreeTest, MapFunction) {
+    // Умножаем на 10, проверяем in-order в новом дереве
+    auto mapped = tree.map<int>([](const int& x){ return x * 10; });
+    auto arr = mapped.inOrderPrint();
+    std::vector<int> expected = {2,3,4,5,6,7,8};
+    for (auto &v : expected) v *= 10;
+    EXPECT_EQ(toStdVector(arr), expected);
+}
+
+TEST_F(TreeTest, WhereFunction) {
+    // Оставляем только чётные
+    auto filtered = tree.where([](const int& x){ return x % 2 == 0; });
+    auto arr = filtered.inOrderPrint();
+    std::vector<int> expected = {2,4,6,8};
+    EXPECT_EQ(toStdVector(arr), expected);
+}
+
+TEST(TreeEdgeTest, TraversalsOnEmpty) {
+    Tree<int> empty;
+    EXPECT_TRUE(toStdVector(empty.preOrderPrint()).empty());
+    EXPECT_TRUE(toStdVector(empty.inOrderPrint()).empty());
+    EXPECT_TRUE(toStdVector(empty.postOrderPrint()).empty());
+    EXPECT_TRUE(toStdVector(empty.rootRightLeftPrint()).empty());
+    EXPECT_TRUE(toStdVector(empty.rightRootLeftPrint()).empty());
+    EXPECT_TRUE(toStdVector(empty.rightLeftRootPrint()).empty());
+}
+
+
 int test(int argc, char *argv[]) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

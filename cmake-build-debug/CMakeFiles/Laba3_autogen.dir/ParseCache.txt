@@ -460,7 +460,7 @@ C:/Users/islam/CLionProjects/Laba3/mainwindow.hpp
  mdp:C:/msys64/ucrt64/include/qt6/QtWidgets/qwidget.h
  uic:ui/ui_mainwindow.h
 C:/Users/islam/CLionProjects/Laba3/main.cpp
-C:/Users/islam/CLionProjects/Laba3/ListNode.h
-C:/Users/islam/CLionProjects/Laba3/Linked_List.hpp
 C:/Users/islam/CLionProjects/Laba3/mainwindow.cpp
+C:/Users/islam/CLionProjects/Laba3/Linked_List.hpp
+C:/Users/islam/CLionProjects/Laba3/ListNode.h
 C:/Users/islam/CLionProjects/Laba3/Dynamic_array.hpp

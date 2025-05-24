@@ -45,6 +45,11 @@ public:
             throw IndexOutOfRange();
         return m_data[i];
     }
+    const T& operator[](int i) const {
+        if (i < 0 || i >= m_size)
+            throw IndexOutOfRange();
+        return m_data[i];
+    }
 };
 
 
