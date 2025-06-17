@@ -26,7 +26,9 @@ public:
     void insertNewNode(const T &value);
 
     TreeNode<T> *search(const T &key);
-
+    TreeNode<T>* getRoot() const {
+        return rootPtr;
+    }
     Dynamic_array<T> preOrderPrint() const;   // КЛП
     Dynamic_array<T> inOrderPrint() const;    // ЛКП
     Dynamic_array<T> postOrderPrint() const;  // ЛПК

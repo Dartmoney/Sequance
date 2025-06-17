@@ -1,5 +1,5 @@
-C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/islam/CLionProjects/Laba3/mainwindow.hpp \
-  C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/moc_predefs.h \
+C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/islam/CLionProjects/untitled4/mainwindow.hpp \
+  C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3_autogen/moc_predefs.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/array \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/atomic \
@@ -27,6 +27,7 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/cpp_type_traits.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/cxxabi_forced.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/deque.tcc \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/enable_special_members.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/erase_if.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/exception.h \
@@ -85,6 +86,7 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algobase.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_construct.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_deque.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_function.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_heap.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_iterator.h \
@@ -95,6 +97,7 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_multimap.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_numeric.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_pair.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_queue.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_raw_storage_iter.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_relops.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h \
@@ -133,6 +136,7 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwctype \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/debug/assertions.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/debug/debug.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/deque \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/exception \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/aligned_buffer.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/alloc_traits.h \
@@ -164,6 +168,7 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_algorithm_defs.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_memory_defs.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_numeric_defs.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/queue \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ratio \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/span \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/sstream \
@@ -247,13 +252,16 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wctype.h \
-  C:/Users/islam/CLionProjects/Laba3/Dynamic_array.hpp \
-  C:/Users/islam/CLionProjects/Laba3/Error.hpp \
-  C:/Users/islam/CLionProjects/Laba3/Linked_List.hpp \
-  C:/Users/islam/CLionProjects/Laba3/ListNode.h \
-  C:/Users/islam/CLionProjects/Laba3/Matrix.hpp \
-  C:/Users/islam/CLionProjects/Laba3/Sequance.hpp \
-  C:/Users/islam/CLionProjects/Laba3/ui/ui_mainwindow.h \
+  C:/Users/islam/CLionProjects/untitled4/Dynamic_array.hpp \
+  C:/Users/islam/CLionProjects/untitled4/Error.hpp \
+  C:/Users/islam/CLionProjects/untitled4/Linked_List.hpp \
+  C:/Users/islam/CLionProjects/untitled4/ListNode.h \
+  C:/Users/islam/CLionProjects/untitled4/Matrix.hpp \
+  C:/Users/islam/CLionProjects/untitled4/Sequance.hpp \
+  C:/Users/islam/CLionProjects/untitled4/Tree.hpp \
+  C:/Users/islam/CLionProjects/untitled4/TreeNode.hpp \
+  C:/Users/islam/CLionProjects/untitled4/TreeWindow.hpp \
+  C:/Users/islam/CLionProjects/untitled4/ui/ui_mainwindow.h \
   C:/msys64/ucrt64/include/qt6/QtCore/QVariant \
   C:/msys64/ucrt64/include/qt6/QtCore/q20functional.h \
   C:/msys64/ucrt64/include/qt6/QtCore/q20iterator.h \
@@ -401,6 +409,7 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/msys64/ucrt64/include/qt6/QtGui/qinputmethod.h \
   C:/msys64/ucrt64/include/qt6/QtGui/qkeysequence.h \
   C:/msys64/ucrt64/include/qt6/QtGui/qpaintdevice.h \
+  C:/msys64/ucrt64/include/qt6/QtGui/qpainter.h \
   C:/msys64/ucrt64/include/qt6/QtGui/qpalette.h \
   C:/msys64/ucrt64/include/qt6/QtGui/qpen.h \
   C:/msys64/ucrt64/include/qt6/QtGui/qpicture.h \
@@ -423,6 +432,8 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/msys64/ucrt64/include/qt6/QtGui/qwindowdefs_win.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QApplication \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QDoubleSpinBox \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/QGraphicsScene \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/QGraphicsView \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QLabel \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMainWindow \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMenuBar \
@@ -431,20 +442,28 @@ C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/EWIEGA46WW/mo
   C:/msys64/ucrt64/include/qt6/QtWidgets/QStackedWidget \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QStatusBar \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QTextEdit \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/QVBoxLayout \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QWidget \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qabstractbutton.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qabstractscrollarea.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qabstractspinbox.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qapplication.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qboxlayout.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qdialog.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qdialogbuttonbox.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qframe.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qgraphicsscene.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qgraphicsview.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qgridlayout.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlabel.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qlayout.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qlayoutitem.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmainwindow.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmenu.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmenubar.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmessagebox.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qpushbutton.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qscrollarea.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qsizepolicy.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qspinbox.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qstackedwidget.h \

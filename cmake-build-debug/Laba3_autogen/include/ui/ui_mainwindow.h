@@ -79,6 +79,7 @@ public:
     QPushButton *NormBut1;
     QPushButton *NormBut2;
     QPushButton *toPage1Button;
+    QPushButton *pushButtonTree;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -328,6 +329,9 @@ public:
         toPage1Button = new QPushButton(page_2);
         toPage1Button->setObjectName("toPage1Button");
         toPage1Button->setGeometry(QRect(20, 0, 31, 24));
+        pushButtonTree = new QPushButton(page_2);
+        pushButtonTree->setObjectName("pushButtonTree");
+        pushButtonTree->setGeometry(QRect(520, 20, 75, 24));
         stackedWidget->addWidget(page_2);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -368,6 +372,7 @@ public:
         NormBut1->setText(QCoreApplication::translate("MainWindow", "norm", nullptr));
         NormBut2->setText(QCoreApplication::translate("MainWindow", "norm", nullptr));
         toPage1Button->setText(QCoreApplication::translate("MainWindow", "<-", nullptr));
+        pushButtonTree->setText(QCoreApplication::translate("MainWindow", "Tree", nullptr));
     } // retranslateUi
 
 };

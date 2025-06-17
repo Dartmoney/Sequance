@@ -1,7 +1,8 @@
 Detecting compiler hash for triplet x64-mingw-dynamic...
+-- Setting "%HTTP_PROXY%" environment variables to "http://127.0.0.1:12334".
 Compiler found: C:/Qt/Tools/mingw1310_64/bin/x86_64-w64-mingw32-g++.exe
 All requested packages are currently installed.
-Total install time: 575 us
+Total install time: 285 us
 The package gtest is compatible with built-in CMake targets:
 
     enable_testing()

@@ -1,20 +1,20 @@
 {
 	"AUTOGEN_COMMAND_LINE_LENGTH_MAX" : 32000,
-	"BUILD_DIR" : "C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen",
-	"CMAKE_BINARY_DIR" : "C:/Users/islam/CLionProjects/Laba3/cmake-build-debug",
-	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/islam/CLionProjects/Laba3/cmake-build-debug",
-	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/islam/CLionProjects/Laba3",
+	"BUILD_DIR" : "C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/islam/CLionProjects/untitled4/cmake-build-debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/islam/CLionProjects/untitled4/cmake-build-debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/islam/CLionProjects/untitled4",
 	"CMAKE_EXECUTABLE" : "C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/bin/cmake.exe",
 	"CMAKE_LIST_FILES" : 
 	[
-		"C:/Users/islam/CLionProjects/Laba3/CMakeLists.txt",
-		"C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/3.30.5/CMakeSystem.cmake",
+		"C:/Users/islam/CLionProjects/untitled4/CMakeLists.txt",
+		"C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeSystem.cmake",
 		"C:/Users/islam/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDependentOption.cmake",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake",
-		"C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/3.30.5/CMakeCCompiler.cmake",
-		"C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
+		"C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeCCompiler.cmake",
+		"C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake",
@@ -27,7 +27,7 @@
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake",
-		"C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake",
+		"C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCInformation.cmake",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake",
@@ -253,54 +253,60 @@
 		"C:/Users/islam/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/share/gtest/GTestTargets.cmake",
 		"C:/Users/islam/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/share/gtest/GTestTargets-debug.cmake",
 		"C:/Users/islam/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/share/gtest/GTestTargets-release.cmake",
-		"C:/Users/islam/CLionProjects/Laba3/vcpkg.json"
+		"C:/Users/islam/CLionProjects/untitled4/vcpkg.json"
 	],
-	"CMAKE_SOURCE_DIR" : "C:/Users/islam/CLionProjects/Laba3",
+	"CMAKE_SOURCE_DIR" : "C:/Users/islam/CLionProjects/untitled4",
 	"CROSS_CONFIG" : false,
-	"DEP_FILE" : "C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/deps",
+	"DEP_FILE" : "C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "Laba3_autogen/timestamp",
 	"HEADERS" : 
 	[
 		[
-			"C:/Users/islam/CLionProjects/Laba3/Dynamic_array.hpp",
+			"C:/Users/islam/CLionProjects/untitled4/Dynamic_array.hpp",
 			"MU",
 			"EWIEGA46WW/moc_Dynamic_array.cpp",
 			null
 		],
 		[
-			"C:/Users/islam/CLionProjects/Laba3/Linked_List.hpp",
+			"C:/Users/islam/CLionProjects/untitled4/Linked_List.hpp",
 			"MU",
 			"EWIEGA46WW/moc_Linked_List.cpp",
 			null
 		],
 		[
-			"C:/Users/islam/CLionProjects/Laba3/ListNode.h",
+			"C:/Users/islam/CLionProjects/untitled4/ListNode.h",
 			"MU",
 			"EWIEGA46WW/moc_ListNode.cpp",
 			null
 		],
 		[
-			"C:/Users/islam/CLionProjects/Laba3/Tree.hpp",
+			"C:/Users/islam/CLionProjects/untitled4/Tree.hpp",
 			"MU",
 			"EWIEGA46WW/moc_Tree.cpp",
 			null
 		],
 		[
-			"C:/Users/islam/CLionProjects/Laba3/TreeNode.hpp",
+			"C:/Users/islam/CLionProjects/untitled4/TreeNode.hpp",
 			"MU",
 			"EWIEGA46WW/moc_TreeNode.cpp",
 			null
 		],
 		[
-			"C:/Users/islam/CLionProjects/Laba3/mainwindow.hpp",
+			"C:/Users/islam/CLionProjects/untitled4/TreeWindow.hpp",
+			"MU",
+			"EWIEGA46WW/moc_TreeWindow.cpp",
+			null
+		],
+		[
+			"C:/Users/islam/CLionProjects/untitled4/mainwindow.hpp",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
 			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/include",
-	"MOC_COMPILATION_FILE" : "C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3_autogen/include",
+	"MOC_COMPILATION_FILE" : "C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
 		"MINGW_HAS_SECURE_API=1",
@@ -357,21 +363,22 @@
 		"-c",
 		"C:/Program Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 8,
-	"PARSE_CACHE_FILE" : "C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/Laba3_autogen.dir/ParseCache.txt",
+	"PARSE_CACHE_FILE" : "C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/Laba3_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "C:/msys64/ucrt64/share/qt6/bin/moc.exe",
 	"QT_UIC_EXECUTABLE" : "C:/msys64/ucrt64/share/qt6/bin/uic.exe",
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 8,
-	"SETTINGS_FILE" : "C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/Laba3_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/Laba3_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "C:/Users/islam/CLionProjects/Laba3/main.cpp", "MU", null ],
-		[ "C:/Users/islam/CLionProjects/Laba3/mainwindow.cpp", "MU", null ]
+		[ "C:/Users/islam/CLionProjects/untitled4/Treewindow.cpp", "MU", null ],
+		[ "C:/Users/islam/CLionProjects/untitled4/main.cpp", "MU", null ],
+		[ "C:/Users/islam/CLionProjects/untitled4/mainwindow.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

@@ -15,11 +15,10 @@ class TreeNode
 public:
     TreeNode(T);
     T getData(); //returns data stored in node
-
-private:
-    T data;
     TreeNode* leftPtr; //pointer to left child node of node
     TreeNode* rightPtr; //pointer to right child node of node
+    T data;
+private:
     TreeNode* parent;
 };
 

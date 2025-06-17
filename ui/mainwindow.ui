@@ -828,6 +828,19 @@
        <string>&lt;-</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButtonTree">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>20</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Tree</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

@@ -211,6 +211,15 @@ void MainWindow::Printbutclic() {
     }
 }
 
+void MainWindow::pushbuttreeclic() {
+    if (!treeWindow) {
+        treeWindow = new TreeWindow(this); // parent — MainWindow
+    }
+    treeWindow->show();
+    treeWindow->raise();
+    treeWindow->activateWindow();
+}
+
 void MainWindow::setupConnections() {
     connect(
             ui->ButArray,
@@ -239,7 +248,7 @@ void MainWindow::setupConnections() {
             &QPushButton::clicked,
             this,
             &MainWindow::SumBut1clic
-            );
+    );
     connect(ui->DifBut1,
             &QPushButton::clicked,
             this,
@@ -275,4 +284,5 @@ void MainWindow::setupConnections() {
             this,
             &MainWindow::normBut2clic
     );
+    connect(ui->pushButtonTree, &QPushButton::clicked, this, &MainWindow::pushbuttreeclic);
 }

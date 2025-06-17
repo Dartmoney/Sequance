@@ -1,33 +1,113 @@
 Laba3Test_autogen/timestamp: \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCCompiler.cmake.in \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCCompilerABI.c \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCInformation.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeCompilerIdDetection.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDependentOption.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineRCCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCCompiler.cmake.in \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeRCInformation.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystem.cmake.in \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestCompilerCommon.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeTestRCCompiler.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckCXXCompilerFlag.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckCXXSourceCompiles.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckIncludeFile.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckLibraryExists.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/ADSP-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/ARMCC-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/ARMClang-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/AppleClang-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Borland-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Bruce-C-DetermineCompiler.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompilerInternal.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Compaq-C-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Cray-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/CrayClang-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Embarcadero-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Fujitsu-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GHS-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C-DetermineCompiler.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-C.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/GNU.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/HP-C-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/HP-CXX-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IAR-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Intel-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/LCC-C-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/MSVC-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/NVHPC-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/NVIDIA-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/OrangeC-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/PGI-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/PathScale-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SCO-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SDCC-C-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SunPro-C-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/TI-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/TIClang-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Tasking-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/Watcom-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XL-C-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XL-CXX-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XLClang-C-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/zOS-C-DetermineCompiler.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/FindPackageMessage.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/FindThreads.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/FindVulkan.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/GNUInstallDirs.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CheckCompilerFlag.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CheckFlagCommonConfig.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake \
+	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-Determine-CXX.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake \
 	C:/Program\ Files/JetBrains/CLion2024.3/bin/cmake/win/x64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake \
@@ -43,21 +123,21 @@ Laba3Test_autogen/timestamp: \
 	C:/Users/islam/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/share/gtest/GTestTargets-release.cmake \
 	C:/Users/islam/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/share/gtest/GTestTargets.cmake \
 	C:/Users/islam/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake \
-	C:/Users/islam/CLionProjects/Laba3/All_test.hpp \
-	C:/Users/islam/CLionProjects/Laba3/ArrayList.hpp \
-	C:/Users/islam/CLionProjects/Laba3/ArraySequence.hpp \
-	C:/Users/islam/CLionProjects/Laba3/CMakeLists.txt \
-	C:/Users/islam/CLionProjects/Laba3/Dynamic_array.hpp \
-	C:/Users/islam/CLionProjects/Laba3/Error.hpp \
-	C:/Users/islam/CLionProjects/Laba3/Linked_List.hpp \
-	C:/Users/islam/CLionProjects/Laba3/ListNode.h \
-	C:/Users/islam/CLionProjects/Laba3/Sequance.hpp \
-	C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/3.30.5/CMakeCCompiler.cmake \
-	C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
-	C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake \
-	C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
-	C:/Users/islam/CLionProjects/Laba3/main.cpp \
-	C:/Users/islam/CLionProjects/Laba3/vcpkg.json \
+	C:/Users/islam/CLionProjects/untitled4/All_test.hpp \
+	C:/Users/islam/CLionProjects/untitled4/ArrayList.hpp \
+	C:/Users/islam/CLionProjects/untitled4/ArraySequence.hpp \
+	C:/Users/islam/CLionProjects/untitled4/CMakeLists.txt \
+	C:/Users/islam/CLionProjects/untitled4/Dynamic_array.hpp \
+	C:/Users/islam/CLionProjects/untitled4/Error.hpp \
+	C:/Users/islam/CLionProjects/untitled4/Linked_List.hpp \
+	C:/Users/islam/CLionProjects/untitled4/ListNode.h \
+	C:/Users/islam/CLionProjects/untitled4/Sequance.hpp \
+	C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeCCompiler.cmake \
+	C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
+	C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake \
+	C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
+	C:/Users/islam/CLionProjects/untitled4/main.cpp \
+	C:/Users/islam/CLionProjects/untitled4/vcpkg.json \
 	C:/msys64/ucrt64/lib/cmake/Qt6/FindWrapAtomic.cmake \
 	C:/msys64/ucrt64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake \
 	C:/msys64/ucrt64/lib/cmake/Qt6/Qt6Config.cmake \

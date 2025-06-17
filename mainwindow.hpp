@@ -12,6 +12,9 @@
 #include "Linked_List.hpp"
 #include "Dynamic_array.hpp"
 #include "Matrix.hpp"
+#include <memory>
+#include "TreeWindow.hpp"
+
 class MainWindow : public QMainWindow {
 Q_OBJECT
 
@@ -35,6 +38,7 @@ private slots:
     void DifBut2clic();
     void multBut2clic();
     void normBut2clic();
+    void pushbuttreeclic();
 private:
     void setupConnections();
     Matrix<double> mel1 = Matrix<double>(2);
@@ -44,6 +48,7 @@ private:
     Ui::MainWindow *ui;
     Dynamic_array<string> ari;
     List<string> lsi;
+    TreeWindow* treeWindow = nullptr;
 };
 
 

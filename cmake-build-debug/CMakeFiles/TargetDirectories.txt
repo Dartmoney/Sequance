@@ -1,8 +1,8 @@
-C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/Laba3.dir
-C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/Laba3Test.dir
-C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/Laba3_autogen_timestamp_deps.dir
-C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/Laba3_autogen.dir
-C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/Laba3Test_autogen_timestamp_deps.dir
-C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/CMakeFiles/Laba3Test_autogen.dir
+C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/Laba3.dir
+C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/Laba3Test.dir
+C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/Laba3_autogen_timestamp_deps.dir
+C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/Laba3_autogen.dir
+C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/Laba3Test_autogen_timestamp_deps.dir
+C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/Laba3Test_autogen.dir

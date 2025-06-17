@@ -22,7 +22,9 @@ add_executable(Laba3 main.cpp
         Linked_List.hpp
         ListNode.h
         TreeNode.hpp
-        Tree.hpp)
+        Tree.hpp
+        TreeWindow.hpp
+        Treewindow.cpp)
 target_link_libraries(Laba3
         Qt::Core
         Qt::Gui

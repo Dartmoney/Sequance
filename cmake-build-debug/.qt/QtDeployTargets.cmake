@@ -1,6 +1,6 @@
-set(__QT_DEPLOY_TARGET_Laba3_FILE C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3.exe)
+set(__QT_DEPLOY_TARGET_Laba3_FILE C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3.exe)
 set(__QT_DEPLOY_TARGET_Laba3_TYPE EXECUTABLE)
 set(__QT_DEPLOY_TARGET_Laba3_RUNTIME_DLLS C:/msys64/ucrt64/bin/Qt6Widgets.dll;C:/msys64/ucrt64/bin/Qt6Gui.dll;C:/msys64/ucrt64/bin/Qt6Core.dll)
-set(__QT_DEPLOY_TARGET_Laba3Test_FILE C:/Users/islam/CLionProjects/Laba3/cmake-build-debug/Laba3Test.exe)
+set(__QT_DEPLOY_TARGET_Laba3Test_FILE C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3Test.exe)
 set(__QT_DEPLOY_TARGET_Laba3Test_TYPE EXECUTABLE)
 set(__QT_DEPLOY_TARGET_Laba3Test_RUNTIME_DLLS C:/Users/islam/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/debug/bin/libgtest_main.dll;C:/Users/islam/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/debug/bin/libgmock_main.dll;C:/Users/islam/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/debug/bin/libgmock.dll;C:/Users/islam/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/debug/bin/libgtest.dll)

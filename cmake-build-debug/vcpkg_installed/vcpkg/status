@@ -2,14 +2,14 @@ Package: vcpkg-cmake-config
 Version: 2024-05-23
 Architecture: x64-mingw-dynamic
 Multi-Arch: same
-Abi: 839b8648177ca85843094d860528dc9a8f362f5b2219574cf41d2e2869cb032d
+Abi: 4569910820046d7b7d9f87cd33ebed21d76f6052c19921d58dbf15b9ba17f4f0
 Status: install ok installed
 
 Package: vcpkg-cmake
 Version: 2024-04-23
 Architecture: x64-mingw-dynamic
 Multi-Arch: same
-Abi: c5d33c878f5bdfc77b15d930ffd884c7576099f29daa26f4db75ef41687600c7
+Abi: 313c4f19574bdb342e56ded18f3e5c978866b8969608b75e0433275e966b3bca
 Status: install ok installed
 
 Package: gtest
@@ -18,7 +18,7 @@ Port-Version: 1
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-mingw-dynamic
 Multi-Arch: same
-Abi: c710849aafc092bba221b411c671ddc8af6ac6ae5610355c054a6b9f066955a0
+Abi: 98419f37ab157136607276ac01a214f6b4e559692d6445dc0754bf3ed4509d59
 Description: Google Testing and Mocking Framework
 Status: install ok installed
 
