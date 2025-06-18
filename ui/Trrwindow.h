@@ -11,7 +11,6 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -28,9 +27,9 @@ public:
     QPushButton *pushButtonSearch;
     QPushButton *pushButtonClear;
     QPushButton *pushButtonTraversal;
-    QGraphicsView *graphicsViewTree;
     QLabel *labelOutput;
     QPushButton *pushButtonGraphic;
+    QWidget *webWidget;
 
     void setupUi(QWidget *Form)
     {
@@ -55,15 +54,15 @@ public:
         pushButtonTraversal = new QPushButton(Form);
         pushButtonTraversal->setObjectName("pushButtonTraversal");
         pushButtonTraversal->setGeometry(QRect(50, 170, 111, 24));
-        graphicsViewTree = new QGraphicsView(Form);
-        graphicsViewTree->setObjectName("graphicsViewTree");
-        graphicsViewTree->setGeometry(QRect(175, 21, 441, 431));
         labelOutput = new QLabel(Form);
         labelOutput->setObjectName("labelOutput");
         labelOutput->setGeometry(QRect(20, 230, 131, 191));
         pushButtonGraphic = new QPushButton(Form);
         pushButtonGraphic->setObjectName("pushButtonGraphic");
         pushButtonGraphic->setGeometry(QRect(50, 200, 111, 24));
+        webWidget = new QWidget(Form);
+        webWidget->setObjectName("webWidget");
+        webWidget->setGeometry(QRect(210, 20, 391, 421));
 
         retranslateUi(Form);
 

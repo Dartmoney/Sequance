@@ -261,6 +261,7 @@ C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3_autogen/EWIEGA46W
   C:/Users/islam/CLionProjects/untitled4/Tree.hpp \
   C:/Users/islam/CLionProjects/untitled4/TreeNode.hpp \
   C:/Users/islam/CLionProjects/untitled4/TreeWindow.hpp \
+  C:/Users/islam/CLionProjects/untitled4/ui/Trrwindow.h \
   C:/Users/islam/CLionProjects/untitled4/ui/ui_mainwindow.h \
   C:/msys64/ucrt64/include/qt6/QtCore/QVariant \
   C:/msys64/ucrt64/include/qt6/QtCore/q20functional.h \
@@ -435,6 +436,7 @@ C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3_autogen/EWIEGA46W
   C:/msys64/ucrt64/include/qt6/QtWidgets/QGraphicsScene \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QGraphicsView \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QLabel \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/QLineEdit \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMainWindow \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMenuBar \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMessageBox \
@@ -458,6 +460,7 @@ C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3_autogen/EWIEGA46W
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlabel.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlayout.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlayoutitem.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qlineedit.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmainwindow.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmenu.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmenubar.h \

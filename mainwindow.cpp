@@ -212,12 +212,7 @@ void MainWindow::Printbutclic() {
 }
 
 void MainWindow::pushbuttreeclic() {
-    if (!treeWindow) {
-        treeWindow = new TreeWindow(this); // parent — MainWindow
-    }
-    treeWindow->show();
-    treeWindow->raise();
-    treeWindow->activateWindow();
+    treeWindow.show();
 }
 
 void MainWindow::setupConnections() {

@@ -15,7 +15,8 @@
 #include <vector>
 #include <queue>
 #include <stdexcept>
-
+#include <fstream>
+#include <string>
 template<typename T>
 class Tree {
 public:
@@ -29,6 +30,8 @@ public:
     TreeNode<T>* getRoot() const {
         return rootPtr;
     }
+    void saveToHTML(const std::string& filename) const;
+    void clear();
     Dynamic_array<T> preOrderPrint() const;   // КЛП
     Dynamic_array<T> inOrderPrint() const;    // ЛКП
     Dynamic_array<T> postOrderPrint() const;  // ЛПК
@@ -37,11 +40,13 @@ public:
     Dynamic_array<T> rightLeftRootPrint() const; // ПЛК
     template<typename U>
     Tree<U> map(std::function<U(const T &)> f) const;
-
+    int countNodes(TreeNode<T>* node) const;
     Tree<T> where(std::function<bool(const T &)> pred) const;
-
+    int calculateHeight(TreeNode<T>* node) const;
 private:
+    void generateSubtreeHTML(TreeNode<T>* node, std::ofstream& out) const;
     TreeNode<T> *rootPtr;
+    void clearUtility(TreeNode<T>* node);
 
     void rootRightLeftCollect(TreeNode<T> *, Dynamic_array<T> &) const;
 
@@ -63,10 +68,264 @@ private:
     void mapUtility(TreeNode<T> *, Tree<U> &, std::function<U(const T &)>) const;
 
     void whereUtility(TreeNode<T> *, Tree<T> &, std::function<bool(const T &)>) const;
+
+    string generateHTML() const;
+
+    string generateSubtreeHTML(TreeNode<T> *node) const;
 };
+template<typename T>
+void Tree<T>::clear() {
+    clearUtility(rootPtr);
+    rootPtr = nullptr;
+}
+template<typename T>
+void Tree<T>::saveToHTML(const std::string& filename) const {
+    std::ofstream out(filename);
+    if (!out.is_open()) {
+        throw std::runtime_error("Cannot open file: " + filename);
+    }
+
+    out << R"(
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Binary Tree Visualization</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                background: #f8f9fa;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                padding: 20px;
+            }
+            .tree-title {
+                text-align: center;
+                color: #2c3e50;
+                margin: 20px 0 40px;
+                font-size: 32px;
+                font-weight: 600;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            }
+            .tree-container {
+                display: flex;
+                justify-content: center;
+                min-height: 100vh;
+            }
+            .tree-node {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+                margin: 0 25px;
+            }
+            .node-value {
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                border: 3px solid #3498db;
+                border-radius: 50%;
+                background: linear-gradient(145deg, #ffffff, #f0f0f0);
+                text-align: center;
+                position: relative;
+                z-index: 2;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                font-weight: bold;
+                color: #2c3e50;
+                font-size: 18px;
+                transition: all 0.3s ease;
+            }
+            .node-value:hover {
+                transform: scale(1.1);
+                background: linear-gradient(145deg, #3498db, #2980b9);
+                color: white;
+                box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            }
+            .node-children {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                padding-top: 70px;
+            }
+            .child {
+                position: relative;
+                margin: 0 15px;
+            }
+            .child::before {
+                content: '';
+                position: absolute;
+                top: -50px;
+                left: 50%;
+                width: 3px;
+                height: 50px;
+                background: #3498db;
+                transform: translateX(-50%);
+            }
+            .child.left {
+                margin-right: 50px;
+            }
+            .child.left::before {
+                transform: translateX(-50%) rotate(-35deg);
+                width: 4px;
+                height: 55px;
+                top: -55px;
+                left: calc(50% + 25px);
+            }
+            .child.right {
+                margin-left: 50px;
+            }
+            .child.right::before {
+                transform: translateX(-50%) rotate(35deg);
+                width: 4px;
+                height: 55px;
+                top: -55px;
+                left: calc(50% - 25px);
+            }
+            .no-children .child {
+                display: none;
+            }
+            .controls {
+                text-align: center;
+                margin: 30px 0;
+            }
+            .tree-info {
+                background: #e3f2fd;
+                border-radius: 10px;
+                padding: 15px;
+                margin: 20px auto;
+                max-width: 600px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            }
+            .tree-info h3 {
+                color: #2c3e50;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            .tree-stats {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            .stat-item {
+                background: white;
+                padding: 10px 15px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="tree-title">Binary Search Tree Visualization</h1>
+
+        <div class="tree-info">
+            <h3>Tree Information</h3>
+            <div class="tree-stats">
+                <div class="stat-item">Total nodes: )" << countNodes(rootPtr) << R"(</div>
+                <div class="stat-item">Tree height: )" << calculateHeight(rootPtr) << R"(</div>
+                <div class="stat-item">Root value: )" << (rootPtr ? std::to_string(rootPtr->data) : "N/A") << R"(</div>
+            </div>
+        </div>
+
+        <div class="tree-container">
+    )";
+
+    if (rootPtr) {
+        generateSubtreeHTML(rootPtr, out);
+    } else {
+        out << "<h2 style='text-align:center;color:#7f8c8d;margin-top:50px;'>🌳 Tree is empty 🌳</h2>";
+    }
+
+    out << R"(
+        </div>
+
+        <div class="controls">
+            <button onclick='window.location.reload()' style="
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    ">
+    Refresh View
+            </button>
+              </div>
+
+                <script>
+                document.querySelectorAll('.node-value').forEach(node => {
+                        node.addEventListener('click', function() {
+                const value = this.textContent;
+                alert('Clicked node: ' + value);
+            });
+                });
+    </script>
+      </body>
+        </html>
+    )";
+
+    out.close();
+}
 
 template<typename T>
-Tree<T>::Tree() : rootPtr(nullptr) {}
+void Tree<T>::generateSubtreeHTML(TreeNode<T>* node, std::ofstream& out) const {
+    if (!node) return;
+
+    out << "<div class='tree-node'>";
+    out << "<div class='node-value'>" << node->data << "</div>";
+
+    out << "<div class='node-children ";
+    if (!node->leftPtr && !node->rightPtr) {
+        out << "no-children";
+    }
+    out << "'>";
+
+    if (node->leftPtr) {
+        out << "<div class='child left'>";
+        generateSubtreeHTML(node->leftPtr, out);
+        out << "</div>";
+    }
+
+    if (node->rightPtr) {
+        out << "<div class='child right'>";
+        generateSubtreeHTML(node->rightPtr, out);
+        out << "</div>";
+    }
+
+    out << "</div></div>";
+}
+
+// Вспомогательные функции для статистики
+template<typename T>
+int Tree<T>::countNodes(TreeNode<T>* node) const {
+    if (!node) return 0;
+    return 1 + countNodes(node->leftPtr) + countNodes(node->rightPtr);
+}
+
+template<typename T>
+int Tree<T>::calculateHeight(TreeNode<T>* node) const {
+    if (!node) return 0;
+    return 1 + std::max(calculateHeight(node->leftPtr),
+                        calculateHeight(node->rightPtr));
+}
+template<typename T>
+void Tree<T>::clearUtility(TreeNode<T>* node) {
+    if (!node) return;
+    clearUtility(node->leftPtr);
+    clearUtility(node->rightPtr);
+    delete node;
+}
+template<typename T>
+Tree<T>::Tree()
+{
+    rootPtr = 0;
+}
 
 template<typename T>
 bool Tree<T>::isEmpty() const {
@@ -77,7 +336,6 @@ template<typename T>
 void Tree<T>::insertNewNode(const T &value) {
     insertNewNodeUtility(&rootPtr, value);
 }
-
 template<typename T>
 Dynamic_array<T> Tree<T>::rootRightLeftPrint() const {
     Dynamic_array<T> result;
@@ -124,18 +382,23 @@ void Tree<T>::rightLeftRootCollect(TreeNode<T> *node, Dynamic_array<T> &out) con
 }
 
 template<typename T>
-void Tree<T>::insertNewNodeUtility(TreeNode<T> **node, const T &value) {
-    if (*node == nullptr) {
-        *node = new TreeNode<T>(value);
-    } else if (value < (*node)->data) {
-        insertNewNodeUtility(&((*node)->leftPtr), value);
-    } else if (value > (*node)->data) {
-        insertNewNodeUtility(&((*node)->rightPtr), value);
-    } else {
-        std::cout << value << " is a duplicate value\n";
+void Tree<T>::insertNewNodeUtility(TreeNode<T> **temp, const T &dataIn) {
+    if(*temp == 0) //if node is null create a new node with input data
+        *temp = new TreeNode<T>(dataIn);
+    else {
+        if (dataIn < (*temp)->data) //if input data is less than data in current node
+            insertNewNodeUtility(&((*temp)->leftPtr),
+                                 dataIn); //recursive function call with current node's left child as input leaf
+        else {
+            if (dataIn > (*temp)->data) //if input data is greater than data in current node
+                insertNewNodeUtility(&((*temp)->rightPtr),
+                                     dataIn); //recursive function call with current node's right child as input leaf
+            else //if input data is equal to data in current node
+                cout << dataIn << " is a duplicate value " << endl; //duplicate values ignored
+
+        }
     }
 }
-
 template<typename T>
 TreeNode<T> *Tree<T>::search(const T &key) {
     return searchUtility(rootPtr, key);

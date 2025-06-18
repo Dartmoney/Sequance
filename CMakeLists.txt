@@ -24,7 +24,9 @@ add_executable(Laba3 main.cpp
         TreeNode.hpp
         Tree.hpp
         TreeWindow.hpp
-        Treewindow.cpp)
+        Treewindow.cpp
+        Tree_to_html.hpp
+        graphic_test.hpp)
 target_link_libraries(Laba3
         Qt::Core
         Qt::Gui

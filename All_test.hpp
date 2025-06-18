@@ -373,49 +373,42 @@ TEST_F(TreeTest, SearchNonExisting) {
 }
 
 TEST_F(TreeTest, PreOrderTraversal) {
-    // КЛП: 5,3,2,4,7,6,8
     auto arr = tree.preOrderPrint();
     std::vector<int> expected = {5,3,2,4,7,6,8};
     EXPECT_EQ(toStdVector(arr), expected);
 }
 
 TEST_F(TreeTest, InOrderTraversal) {
-    // ЛКП: 2,3,4,5,6,7,8
     auto arr = tree.inOrderPrint();
     std::vector<int> expected = {2,3,4,5,6,7,8};
     EXPECT_EQ(toStdVector(arr), expected);
 }
 
 TEST_F(TreeTest, PostOrderTraversal) {
-    // ЛПК: 2,4,3,6,8,7,5
     auto arr = tree.postOrderPrint();
     std::vector<int> expected = {2,4,3,6,8,7,5};
     EXPECT_EQ(toStdVector(arr), expected);
 }
 
 TEST_F(TreeTest, RootRightLeftTraversal) {
-    // КПЛ: root, right, left => 5,7,8,6,3,4,2
     auto arr = tree.rootRightLeftPrint();
     std::vector<int> expected = {5,7,8,6,3,4,2};
     EXPECT_EQ(toStdVector(arr), expected);
 }
 
 TEST_F(TreeTest, RightRootLeftTraversal) {
-    // ПКЛ: right, root, left => 8,7,6,5,4,3,2
     auto arr = tree.rightRootLeftPrint();
     std::vector<int> expected = {8,7,6,5,4,3,2};
     EXPECT_EQ(toStdVector(arr), expected);
 }
 
 TEST_F(TreeTest, RightLeftRootTraversal) {
-    // ПЛК: right, left, root => 8,6,7,4,2,3,5
     auto arr = tree.rightLeftRootPrint();
     std::vector<int> expected = {8,6,7,4,2,3,5};
     EXPECT_EQ(toStdVector(arr), expected);
 }
 
 TEST_F(TreeTest, MapFunction) {
-    // Умножаем на 10, проверяем in-order в новом дереве
     auto mapped = tree.map<int>([](const int& x){ return x * 10; });
     auto arr = mapped.inOrderPrint();
     std::vector<int> expected = {2,3,4,5,6,7,8};
@@ -424,7 +417,6 @@ TEST_F(TreeTest, MapFunction) {
 }
 
 TEST_F(TreeTest, WhereFunction) {
-    // Оставляем только чётные
     auto filtered = tree.where([](const int& x){ return x % 2 == 0; });
     auto arr = filtered.inOrderPrint();
     std::vector<int> expected = {2,4,6,8};

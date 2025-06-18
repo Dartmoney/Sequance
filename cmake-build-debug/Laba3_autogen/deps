@@ -305,15 +305,18 @@ Laba3_autogen/timestamp: \
 	C:/Users/islam/CLionProjects/untitled4/Tree.hpp \
 	C:/Users/islam/CLionProjects/untitled4/TreeNode.hpp \
 	C:/Users/islam/CLionProjects/untitled4/TreeWindow.hpp \
+	C:/Users/islam/CLionProjects/untitled4/Tree_to_html.hpp \
 	C:/Users/islam/CLionProjects/untitled4/Treewindow.cpp \
 	C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeCCompiler.cmake \
 	C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
 	C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake \
 	C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
 	C:/Users/islam/CLionProjects/untitled4/cmake-build-debug/Laba3_autogen/moc_predefs.h \
+	C:/Users/islam/CLionProjects/untitled4/graphic_test.hpp \
 	C:/Users/islam/CLionProjects/untitled4/main.cpp \
 	C:/Users/islam/CLionProjects/untitled4/mainwindow.cpp \
 	C:/Users/islam/CLionProjects/untitled4/mainwindow.hpp \
+	C:/Users/islam/CLionProjects/untitled4/ui/Trrwindow.h \
 	C:/Users/islam/CLionProjects/untitled4/ui/ui_mainwindow.h \
 	C:/Users/islam/CLionProjects/untitled4/vcpkg.json \
 	C:/msys64/ucrt64/include/qt6/QtCore/QVariant \
@@ -489,6 +492,7 @@ Laba3_autogen/timestamp: \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/QGraphicsScene \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/QGraphicsView \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/QLabel \
+	C:/msys64/ucrt64/include/qt6/QtWidgets/QLineEdit \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/QMainWindow \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/QMenuBar \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/QMessageBox \
@@ -512,6 +516,7 @@ Laba3_autogen/timestamp: \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/qlabel.h \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/qlayout.h \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/qlayoutitem.h \
+	C:/msys64/ucrt64/include/qt6/QtWidgets/qlineedit.h \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/qmainwindow.h \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/qmenu.h \
 	C:/msys64/ucrt64/include/qt6/QtWidgets/qmenubar.h \

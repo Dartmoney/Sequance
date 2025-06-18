@@ -88,16 +88,6 @@
     <string>Нарисовать обход</string>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="graphicsViewTree">
-   <property name="geometry">
-    <rect>
-     <x>175</x>
-     <y>21</y>
-     <width>441</width>
-     <height>431</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="labelOutput">
    <property name="geometry">
     <rect>
@@ -122,6 +112,16 @@
    </property>
    <property name="text">
     <string>График функции</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="webWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>20</y>
+     <width>391</width>
+     <height>421</height>
+    </rect>
    </property>
   </widget>
  </widget>

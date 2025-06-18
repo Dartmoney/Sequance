@@ -21,7 +21,7 @@ Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override {
-        delete ui; // Добавьте, если его нет
+        delete ui;
     }
 private slots:
     void Arrabutclic();
@@ -48,7 +48,7 @@ private:
     Ui::MainWindow *ui;
     Dynamic_array<string> ari;
     List<string> lsi;
-    TreeWindow* treeWindow = nullptr;
+    TreeWindow treeWindow;
 };
 
 
