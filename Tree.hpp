@@ -6,7 +6,7 @@
 #define LABA3_TREE_HPP
 
 #include <iostream>
-
+#include <complex>
 #pragma once
 
 #include <functional>
@@ -398,6 +398,7 @@ void Tree<T>::insertNewNodeUtility(TreeNode<T> **temp, const T &dataIn) {
 
         }
     }
+
 }
 template<typename T>
 TreeNode<T> *Tree<T>::search(const T &key) {

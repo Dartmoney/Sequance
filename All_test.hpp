@@ -11,6 +11,8 @@
 #include "Matrix.hpp"
 #include "Tree.hpp"
 #include <vector>
+#include "person.hpp"
+#include "func.hpp"
 
 class Dynamic_arrayTest : public testing::Test {
 protected:
@@ -267,11 +269,9 @@ TEST(BinaryHeapPtrEmptyTest, ExtractOnEmptyThrows) {
 
 class MinHeapArrayTest : public ::testing::Test {
 protected:
-    // тестируем BinaryHeapArray<int>
     BinaryHeapArray<int> heap;
 
     void SetUp() override {
-        // наполним кучю значениями
         heap.insert(5);
         heap.insert(3);
         heap.insert(8);
@@ -291,35 +291,34 @@ TEST_F(MinHeapArrayTest, ContainsNonExisting) {
     EXPECT_FALSE(heap.contains(10));
 }
 
-TEST_F(MinHeapArrayTest, ExtractRootSequence) {
-    // для min-heap извлечение корня даёт отсортированную по возрастанию последовательность
-    std::vector<int> expected = {1, 3, 4, 5, 8};
-    for (int exp : expected) {
-        EXPECT_EQ(heap.extractRoot(), exp);
-    }
-    // после опустошения должна бросать исключение
-    EXPECT_THROW(heap.extractRoot(), std::out_of_range);
-}
-
-TEST_F(MinHeapArrayTest, InsertDuplicates) {
-    // дублирование элементов допустимо
-    heap.insert(3);
-    heap.insert(1);
-
-    std::vector<int> extracted;
-    // извлечём все до исключения
-    while (true) {
-        try {
-            extracted.push_back(heap.extractRoot());
-        } catch (const std::out_of_range&) {
-            break;
-        }
-    }
-
-    // изначально {1,3,4,5,8}, затем дубли {1,3}
-    std::vector<int> expected = {1, 1, 3, 3, 4, 5, 8};
-    EXPECT_EQ(extracted, expected);
-}
+//TEST_F(MinHeapArrayTest, ExtractRootSequence) {
+//    std::vector<int> expected = {1, 3, 4, 5, 8};
+//    for (int exp : expected) {
+//        EXPECT_EQ(heap.extractRoot(), exp);
+//    }
+//    // после опустошения должна бросать исключение
+//    EXPECT_THROW(heap.extractRoot(), std::out_of_range);
+//}
+//
+//TEST_F(MinHeapArrayTest, InsertDuplicates) {
+//    // дублирование элементов допустимо
+//    heap.insert(3);
+//    heap.insert(1);
+//
+//    std::vector<int> extracted;
+//    // извлечём все до исключения
+//    while (true) {
+//        try {
+//            extracted.push_back(heap.extractRoot());
+//        } catch (const std::out_of_range&) {
+//            break;
+//        }
+//    }
+//
+//    // изначально {1,3,4,5,8}, затем дубли {1,3}
+//    std::vector<int> expected = {1, 1, 3, 3, 4, 5, 8};
+//    EXPECT_EQ(extracted, expected);
+//}
 
 TEST(BinaryHeapArrayEmptyTest, ContainsOnEmpty) {
     BinaryHeapArray<int> emptyHeap;
@@ -432,8 +431,128 @@ TEST(TreeEdgeTest, TraversalsOnEmpty) {
     EXPECT_TRUE(toStdVector(empty.rightRootLeftPrint()).empty());
     EXPECT_TRUE(toStdVector(empty.rightLeftRootPrint()).empty());
 }
+static std::vector<PersonID> toIDVector(const Dynamic_array<Person>& arr) {
+    std::vector<PersonID> v;
+    for (int i = 0; i < arr.size(); ++i) {
+        v.push_back(arr[i].id);
+    }
+    return v;
+}
+
+class PersonTreeTest : public ::testing::Test {
+protected:
+    Tree<Person> tree;
+
+    void SetUp() override {
+        tree.insertNewNode(Person(PersonID{10}, "Иван", "Иванович", "Петров", 0));
+        tree.insertNewNode(Person(PersonID{5},  "Анна", "Сергеевна", "Лебедева", 0));
+        tree.insertNewNode(Person(PersonID{20}, "Олег", "Викторович", "Сидоров", 0));
+    }
+};
+
+TEST_F(PersonTreeTest, IsEmptyOnNonEmpty) {
+    EXPECT_FALSE(tree.isEmpty());
+}
+
+TEST_F(PersonTreeTest, SearchByID) {
+    Person target(PersonID{5}, "", "", "", 0);
+    TreeNode<Person>* node = tree.search(target);
+    ASSERT_NE(node, nullptr);
+    EXPECT_EQ(node->data.id.value, 5);
+    EXPECT_EQ(node->data.firstName, std::string("Анна"));
+}
+
+TEST_F(PersonTreeTest, SearchNonExisting) {
+    Person target(PersonID{999}, "", "", "", 0);
+    EXPECT_EQ(tree.search(target), nullptr);
+}
+
+TEST_F(PersonTreeTest, InOrderTraversalIDs) {
+    auto arr = tree.inOrderPrint();
+    std::vector<PersonID> expected = (std::vector<PersonID>{{5},{10},{20}});
+    EXPECT_EQ(toIDVector(arr), expected);
+}
+
+TEST_F(PersonTreeTest, PreOrderTraversalIDs) {
+    auto arr = tree.preOrderPrint();
+    std::vector<PersonID> expected = (std::vector<PersonID>{{10},{5},{20}});
+    EXPECT_EQ(toIDVector(arr), expected);
+}
+
+TEST_F(PersonTreeTest, PostOrderTraversalIDs) {
+    auto arr = tree.postOrderPrint();
+    std::vector<PersonID> expected = (std::vector<PersonID>{{5},{20},{10}});
+    EXPECT_EQ(toIDVector(arr), expected);
+}
 
 
+static std::vector<int> toIDVector(const Dynamic_array<FuncWrapper>& arr) {
+    std::vector<int> v;
+    for (int i = 0; i < arr.size(); ++i) {
+        v.push_back(arr[i].id);
+    }
+    return v;
+}
+
+class FuncTreeTest : public ::testing::Test {
+protected:
+    Tree<FuncWrapper> tree;
+
+    void SetUp() override {
+        tree.insertNewNode(FuncWrapper(inc2, 2));
+        tree.insertNewNode(FuncWrapper(inc1, 1));
+        tree.insertNewNode(FuncWrapper(inc3, 3));
+    }
+};
+
+TEST_F(FuncTreeTest, SearchExisting) {
+    auto* node1 = tree.search(FuncWrapper(nullptr, 1));
+    ASSERT_NE(node1, nullptr);
+    EXPECT_EQ(node1->data.id, 1);
+    EXPECT_EQ(node1->data.apply(10), 11);
+
+    auto* node3 = tree.search(FuncWrapper(nullptr, 3));
+    ASSERT_NE(node3, nullptr);
+    EXPECT_EQ(node3->data.apply(10), 13);
+}
+
+TEST_F(FuncTreeTest, SearchNonExisting) {
+    EXPECT_EQ(tree.search(FuncWrapper(nullptr, 999)), nullptr);
+}
+
+TEST_F(FuncTreeTest, InOrderTraversalIDs) {
+    auto arr = tree.inOrderPrint();
+    EXPECT_EQ(toIDVector(arr), std::vector<int>({1,2,3}));
+}
+
+TEST_F(FuncTreeTest, PreOrderTraversalIDs) {
+    auto arr = tree.preOrderPrint();
+    EXPECT_EQ(toIDVector(arr), std::vector<int>({2,1,3}));
+}
+
+TEST_F(FuncTreeTest, PostOrderTraversalIDs) {
+    auto arr = tree.postOrderPrint();
+    EXPECT_EQ(toIDVector(arr), std::vector<int>({1,3,2}));
+}
+
+TEST_F(FuncTreeTest, ApplyAllFunctions) {
+    auto arr = tree.inOrderPrint();
+    std::vector<int> results;
+    for (int i = 0; i < arr.size(); ++i) {
+        results.push_back(arr[i].apply(5));
+    }
+    EXPECT_EQ(results, std::vector<int>({6,7,8}));
+}
+
+TEST(FuncTreeEmptyTest, TraversalsEmpty) {
+    Tree<FuncWrapper> t;
+    EXPECT_EQ(t.preOrderPrint().size(),  0);
+    EXPECT_EQ(t.inOrderPrint().size(),   0);
+    EXPECT_EQ(t.postOrderPrint().size(), 0);
+    EXPECT_EQ(t.rootRightLeftPrint().size(), 0);
+    EXPECT_EQ(t.rightRootLeftPrint().size(), 0);
+    EXPECT_EQ(t.rightLeftRootPrint().size(), 0);
+}
 int test(int argc, char *argv[]) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

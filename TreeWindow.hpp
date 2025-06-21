@@ -27,6 +27,7 @@ public:
     void removebutclic();
     void searchbutclic();
     void clearbutclic();
+    void drawGraphic();
 private:
     void setupConnections();
     Tree<int> tree;

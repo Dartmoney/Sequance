@@ -37,6 +37,10 @@ void TreeWindow::searchbutclic() {
     }
 }
 
+void TreeWindow::drawGraphic() {
+    std::system("start C:/Users/islam/CLionProjects/untitled4/graphik.html");
+}
+
 void TreeWindow::drawTree() {
 //    Dynamic_array<int> t;
 //    t = tree.rootRightLeftPrint();
@@ -112,4 +116,8 @@ void TreeWindow::setupConnections() {
             &QPushButton::clicked,
             this,
             &TreeWindow::drawTree);
+    connect(ui->pushButtonGraphic,
+            &QPushButton::clicked,
+            this,
+            &TreeWindow::drawGraphic);
 }

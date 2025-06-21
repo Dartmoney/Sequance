@@ -26,7 +26,9 @@ add_executable(Laba3 main.cpp
         TreeWindow.hpp
         Treewindow.cpp
         Tree_to_html.hpp
-        graphic_test.hpp)
+        graphic_test.hpp
+        person.hpp
+        func.hpp)
 target_link_libraries(Laba3
         Qt::Core
         Qt::Gui
@@ -42,6 +44,8 @@ add_executable(Laba3Test main.cpp
         Sequance.hpp
         ArraySequence.hpp
         ArrayList.hpp
+        person.hpp
+        func.hpp
 )
 
 # 6. Исправленные цели GTest
