@@ -43,6 +43,81 @@ public:
     int countNodes(TreeNode<T>* node) const;
     Tree<T> where(std::function<bool(const T &)> pred) const;
     int calculateHeight(TreeNode<T>* node) const;
+    void balance() {
+        std::vector<T> nodes;
+        inOrderCollect(rootPtr, nodes);
+        clear(rootPtr);
+        rootPtr = buildBalancedTree(nodes, 0, nodes.size() - 1);
+    }
+
+    void inOrderCollect(TreeNode<T>* node, std::vector<T>& nodes) {
+        if (!node) return;
+        inOrderCollect(node->left, nodes);
+        nodes.push_back(node->data);
+        inOrderCollect(node->right, nodes);
+    }
+
+    TreeNode<T>* buildBalancedTree(const std::vector<T>& nodes, int start, int end) {
+        if (start > end) return nullptr;
+        int mid = (start + end) / 2;
+        TreeNode<T>* newNode = new TreeNode<T>{nodes[mid]};
+        newNode->left = buildBalancedTree(nodes, start, mid - 1);
+        newNode->right = buildBalancedTree(nodes, mid + 1, end);
+        return newNode;
+    }
+    std::string serialize() const {
+        std::ostringstream oss;
+        serializeHelper(rootPtr, oss);
+        return oss.str();
+    }
+
+    void serializeHelper(TreeNode<T>* node, std::ostringstream& oss) const {
+        if (!node) {
+            oss << "# ";
+            return;
+        }
+        oss << node->data << " ";
+        serializeHelper(node->left, oss);
+        serializeHelper(node->right, oss);
+    }
+    void deserialize(const std::string& data) {
+        std::istringstream iss(data);
+        clear(rootPtr);
+        rootPtr = deserializeHelper(iss);
+    }
+
+    TreeNode<T>* deserializeHelper(std::istringstream& iss) {
+        std::string val;
+        iss >> val;
+        if (val == "#") return nullptr;
+
+        std::istringstream converter(val);
+        T value;
+        converter >> value;
+
+        TreeNode<T>* node = new TreeNode<T>{value};
+        node->left = deserializeHelper(iss);
+        node->right = deserializeHelper(iss);
+        return node;
+    }
+    bool containsSubtree(const Tree<T>& subtree) const {
+        return isSubtree(rootPtr, subtree.rootPtr);
+    }
+
+    bool isSubtree(TreeNode<T>* node, TreeNode<T>* sub) const {
+        if (!sub) return true;
+        if (!node) return false;
+        if (areIdentical(node, sub)) return true;
+        return isSubtree(node->left, sub) || isSubtree(node->right, sub);
+    }
+
+    bool areIdentical(TreeNode<T>* a, TreeNode<T>* b) const {
+        if (!a && !b) return true;
+        if (!a || !b) return false;
+        return a->data == b->data &&
+               areIdentical(a->left, b->left) &&
+               areIdentical(a->right, b->right);
+    }
 private:
     void generateSubtreeHTML(TreeNode<T>* node, std::ofstream& out) const;
     TreeNode<T> *rootPtr;
@@ -78,6 +153,7 @@ void Tree<T>::clear() {
     clearUtility(rootPtr);
     rootPtr = nullptr;
 }
+
 template<typename T>
 void Tree<T>::saveToHTML(const std::string& filename) const {
     std::ofstream out(filename);
@@ -677,5 +753,62 @@ private:
         return cur;
     }
 };
+template<typename T>
+class BinaryHeapPriorityQueue {
+private:
+    BinaryHeapPtr<T> heap;
 
+public:
+    void push(const T& value) {
+        heap.insert(value);
+    }
+
+    const T& top() const {
+        return heap.getMax();
+    }
+
+    void pop() {
+        heap.extractMax();
+    }
+
+    bool empty() const {
+        return heap.isEmpty();
+    }
+
+    size_t size() const {
+        return heap.getSize();
+    }
+};
+
+
+template<typename T>
+class BSTPriorityQueue {
+private:
+    Tree<T> bst;
+
+public:
+    void push(const T& value) {
+        bst.insertNewNode(value);
+    }
+
+    const T& top() const {
+        TreeNode<T>* current = bst.getRoot();
+        while (current && current->right) {
+            current = current->right;
+        }
+        return current->data;
+    }
+
+    void pop() {
+        bst.remove(top());
+    }
+
+    bool empty() const {
+        return bst.getRoot() == nullptr;
+    }
+
+    size_t size() const {
+        return bst.size();
+    }
+};
 #endif //LABA3_TREE_HPP

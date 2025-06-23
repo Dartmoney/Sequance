@@ -49,7 +49,7 @@ List<T>::~List()
 {
     if ( !isEmpty() ) // List is not empty
     {
-        ListNode<T> *currentPtr = startPtr;
+        ListNode<T>* currentPtr = startPtr;
         ListNode<T> *tempPtr;
 
         while ( currentPtr != 0 ) // delete remaining nodes
