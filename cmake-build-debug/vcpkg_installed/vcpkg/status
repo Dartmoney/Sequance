@@ -2,23 +2,47 @@ Package: vcpkg-cmake-config
 Version: 2024-05-23
 Architecture: x64-mingw-dynamic
 Multi-Arch: same
-Abi: 4569910820046d7b7d9f87cd33ebed21d76f6052c19921d58dbf15b9ba17f4f0
+Abi: cce6fdffad476d9bb5653b46b9bda9f6e6acfd0edce70752ee08c664b4146aee
 Status: install ok installed
 
 Package: vcpkg-cmake
 Version: 2024-04-23
 Architecture: x64-mingw-dynamic
 Multi-Arch: same
-Abi: 313c4f19574bdb342e56ded18f3e5c978866b8969608b75e0433275e966b3bca
+Abi: 10e49055fbf89501fefa6d47aca1e893afc5d2a9bf1a9c6d9625815c797839be
 Status: install ok installed
+
+Package: gtest
+Version: 1.17.0
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-mingw-dynamic
+Multi-Arch: same
+Abi: 39bcd345c358571cf0130e1f458d7bcf7072ccc4875665aa59e778f958f3c978
+Description: Google Testing and Mocking Framework
+Status: install ok installed
+
+Package: vcpkg-cmake-config
+Version: 2024-05-23
+Architecture: x64-windows
+Multi-Arch: same
+Abi: f536d4605c73c466b9c52c4405f17f6a4fb5ff2de8ea1afa7afa3e5b68e7aab7
+Status: purge ok not-installed
+
+Package: vcpkg-cmake
+Version: 2024-04-23
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 3b27439921cfa7f52be59752c92576c6e1bd7f495c566cedefdf6c01c4359dcf
+Status: purge ok not-installed
 
 Package: gtest
 Version: 1.17.0
 Port-Version: 1
 Depends: vcpkg-cmake, vcpkg-cmake-config
-Architecture: x64-mingw-dynamic
+Architecture: x64-windows
 Multi-Arch: same
-Abi: 98419f37ab157136607276ac01a214f6b4e559692d6445dc0754bf3ed4509d59
+Abi: 6960213af62fc5b9a36248511af143537029084879bb52b696381ccd11b6b81a
 Description: Google Testing and Mocking Framework
-Status: install ok installed
+Status: purge ok not-installed
 

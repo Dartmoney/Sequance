@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.hpp'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.8.2)
+** Created by: The Qt Meta Object Compiler version 69 (Qt 6.9.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -18,8 +18,8 @@
 #include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.hpp' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.8.2. It"
+#elif Q_MOC_OUTPUT_REVISION != 69
+#error "This file was generated using the moc from 6.9.3. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -35,121 +35,75 @@ namespace {
 struct qt_meta_tag_ZN10MainWindowE_t {};
 } // unnamed namespace
 
+template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_tag_ZN10MainWindowE_t>()
+{
+    namespace QMC = QtMocConstants;
+    QtMocHelpers::StringRefStorage qt_stringData {
+        "MainWindow",
+        "Arrabutclic",
+        "",
+        "Printbutclic",
+        "Listbutclic",
+        "printlistbutclic",
+        "on_toPage2Button_clicked",
+        "on_toPage1Button_clicked",
+        "SumBut1clic",
+        "DifBut1clic",
+        "multBut1clic",
+        "normBut1clic",
+        "SumBut2clic",
+        "DifBut2clic",
+        "multBut2clic",
+        "normBut2clic",
+        "pushbuttreeclic"
+    };
 
-#ifdef QT_MOC_HAS_STRINGDATA
-static constexpr auto qt_meta_stringdata_ZN10MainWindowE = QtMocHelpers::stringData(
-    "MainWindow",
-    "Arrabutclic",
-    "",
-    "Printbutclic",
-    "Listbutclic",
-    "printlistbutclic",
-    "on_toPage2Button_clicked",
-    "on_toPage1Button_clicked",
-    "SumBut1clic",
-    "DifBut1clic",
-    "multBut1clic",
-    "normBut1clic",
-    "SumBut2clic",
-    "DifBut2clic",
-    "multBut2clic",
-    "normBut2clic",
-    "pushbuttreeclic"
-);
-#else  // !QT_MOC_HAS_STRINGDATA
-#error "qtmochelpers.h not found or too old."
-#endif // !QT_MOC_HAS_STRINGDATA
-
-Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
-
- // content:
-      12,       // revision
-       0,       // classname
-       0,    0, // classinfo
-      15,   14, // methods
-       0,    0, // properties
-       0,    0, // enums/sets
-       0,    0, // constructors
-       0,       // flags
-       0,       // signalCount
-
- // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  104,    2, 0x08,    1 /* Private */,
-       3,    0,  105,    2, 0x08,    2 /* Private */,
-       4,    0,  106,    2, 0x08,    3 /* Private */,
-       5,    0,  107,    2, 0x08,    4 /* Private */,
-       6,    0,  108,    2, 0x08,    5 /* Private */,
-       7,    0,  109,    2, 0x08,    6 /* Private */,
-       8,    0,  110,    2, 0x08,    7 /* Private */,
-       9,    0,  111,    2, 0x08,    8 /* Private */,
-      10,    0,  112,    2, 0x08,    9 /* Private */,
-      11,    0,  113,    2, 0x08,   10 /* Private */,
-      12,    0,  114,    2, 0x08,   11 /* Private */,
-      13,    0,  115,    2, 0x08,   12 /* Private */,
-      14,    0,  116,    2, 0x08,   13 /* Private */,
-      15,    0,  117,    2, 0x08,   14 /* Private */,
-      16,    0,  118,    2, 0x08,   15 /* Private */,
-
- // slots: parameters
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-
-       0        // eod
-};
-
+    QtMocHelpers::UintData qt_methods {
+        // Slot 'Arrabutclic'
+        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'Printbutclic'
+        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'Listbutclic'
+        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'printlistbutclic'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_toPage2Button_clicked'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_toPage1Button_clicked'
+        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'SumBut1clic'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'DifBut1clic'
+        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'multBut1clic'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'normBut1clic'
+        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'SumBut2clic'
+        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'DifBut2clic'
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'multBut2clic'
+        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'normBut2clic'
+        QtMocHelpers::SlotData<void()>(15, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'pushbuttreeclic'
+        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPrivate, QMetaType::Void),
+    };
+    QtMocHelpers::UintData qt_properties {
+    };
+    QtMocHelpers::UintData qt_enums {
+    };
+    return QtMocHelpers::metaObjectData<MainWindow, qt_meta_tag_ZN10MainWindowE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+            qt_methods, qt_properties, qt_enums);
+}
 Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
     QMetaObject::SuperData::link<QMainWindow::staticMetaObject>(),
-    qt_meta_stringdata_ZN10MainWindowE.offsetsAndSizes,
-    qt_meta_data_ZN10MainWindowE,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN10MainWindowE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN10MainWindowE_t>.data,
     qt_static_metacall,
     nullptr,
-    qt_incomplete_metaTypeArray<qt_meta_tag_ZN10MainWindowE_t,
-        // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
-        // method 'Arrabutclic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'Printbutclic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'Listbutclic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'printlistbutclic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_toPage2Button_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_toPage1Button_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'SumBut1clic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'DifBut1clic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'multBut1clic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'normBut1clic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'SumBut2clic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'DifBut2clic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'multBut2clic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'normBut2clic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'pushbuttreeclic'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
-    >,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN10MainWindowE_t>.metaTypes,
     nullptr
 } };
 
@@ -187,7 +141,7 @@ const QMetaObject *MainWindow::metaObject() const
 void *MainWindow::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_ZN10MainWindowE.stringdata0))
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN10MainWindowE_t>.strings))
         return static_cast<void*>(this);
     return QMainWindow::qt_metacast(_clname);
 }

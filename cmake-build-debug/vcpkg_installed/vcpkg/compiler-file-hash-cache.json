@@ -1,4 +1,22 @@
 {
+  "C:/Program Files/JetBrains/CLion2025.2/bin/mingw/bin/g++.exe" : 
+  {
+    "hash" : "f82f09b93754c2332b88d21ef5ceec72c0dcfd09",
+    "size" : 3733920,
+    "timestamp" : 1754579512
+  },
+  "C:/Program Files/JetBrains/CLion2025.2/bin/mingw/bin/gcc.exe" : 
+  {
+    "hash" : "d98173f6839eb1b67a2b0495d5463d9f63b7a7b4",
+    "size" : 3730120,
+    "timestamp" : 1754579512
+  },
+  "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe" : 
+  {
+    "hash" : "1e0b9227cf75a8c92f92e7cc085a5ae5ffa85cce",
+    "size" : 677960,
+    "timestamp" : 1762203908
+  },
   "C:/Qt/Tools/mingw1310_64/bin/x86_64-w64-mingw32-g++.exe" : 
   {
     "hash" : "f216e376f0fdf83493b526e0ac76ce75676b9011",

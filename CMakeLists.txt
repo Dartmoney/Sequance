@@ -6,14 +6,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
-set(CMAKE_PREFIX_PATH "C:/Qt/6.9.0/mingw_64/bin")
+set(CMAKE_PREFIX_PATH "C:/Qt/6.9.3/mingw_64/lib/cmake")
 
 find_package(Qt6 COMPONENTS
         Core
         Gui
         Widgets
         REQUIRED)
-set(CMAKE_PREFIX_PATH "C:/Users/islam/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/share/gtest")
+set(CMAKE_PREFIX_PATH "C:/Users/imako/.vcpkg-clion/vcpkg/packages/gtest_x64-mingw-dynamic")
 
 find_package(GTest CONFIG REQUIRED)
 add_executable(Laba3 main.cpp
@@ -83,3 +83,28 @@ if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
                 "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
     endforeach (QT_LIB)
 endif ()
+add_executable(Lazy_sequenc1 lazy_sequence.h
+        main.cpp
+        Dynamic_array.hpp
+        Linked_List.hpp
+        ListNode.h
+        mainwindow1.h
+        mainwindow1.cpp)
+target_link_libraries(Lazy_sequenc1
+        Qt::Core
+        Qt::Gui
+        Qt::Widgets
+)
+add_executable(Lazy_sequenc_test lazy_sequence.h
+        main.cpp
+        Dynamic_array.hpp
+        Linked_List.hpp
+        ListNode.h
+        Lazy_test.h)
+
+target_link_libraries(Lazy_sequenc_test PRIVATE
+        GTest::gtest
+        GTest::gtest_main
+        GTest::gmock
+        GTest::gmock_main
+)

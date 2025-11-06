@@ -154,7 +154,6 @@
 #define __INT64_MAX__ 0x7fffffffffffffffLL
 #define __SIZEOF_FLOAT__ 4
 #define __WINNT__ 1
-#define WINVER 0x0A00
 #define __HAVE_SPECULATION_SAFE_VALUE 1
 #define __cpp_fold_expressions 201603L
 #define __DEC32_MIN_EXP__ (-94)
@@ -183,7 +182,6 @@
 #define __WIN32__ 1
 #define __PTRDIFF_MAX__ 0x7fffffffffffffffLL
 #define __amd64 1
-#define __tune_core2__ 1
 #define __ATOMIC_HLE_ACQUIRE 65536
 #define __GNUG__ 13
 #define __LONG_LONG_MAX__ 0x7fffffffffffffffLL
@@ -238,7 +236,6 @@
 #define __FLT128_MAX_EXP__ 16384
 #define __cpp_conditional_explicit 201806L
 #define __FLT32_MANT_DIG__ 24
-#define _WIN32_WINNT 0x0A00
 #define __FLOAT_WORD_ORDER__ __ORDER_LITTLE_ENDIAN__
 #define SIZEOF_DPTR (sizeof(void*))
 #define __FLT32X_MIN_EXP__ (-1021)
