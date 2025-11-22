@@ -1,10 +1,11 @@
-#include <QApplication>
-#include <QPushButton>
-#include "mainwindow.hpp"
+// #include <QApplication>
+// #include <QPushButton>
+// #include "mainwindow.hpp"
 #include "Dynamic_array.hpp"
 #include "Linked_List.hpp"
 // #include "All_test.hpp"
-#include "Matrix.hpp"
+// #include "Matrix.hpp"
+#include "Lazy_test.h"
 #include <iostream>
 //#include <math.h>
 using namespace std;
@@ -57,9 +58,9 @@ using namespace std;
 //}
 
 int main(int argc, char *argv[]) {
-    QApplication a(argc, argv);
-    MainWindow window;
-    window.show();
-
-    return a.exec();
+    // QApplication a(argc, argv);
+    // MainWindow window;
+    //     // window.show();
+    // a.exec()
+    return test(argc, argv);
 }

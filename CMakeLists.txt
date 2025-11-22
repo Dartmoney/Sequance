@@ -89,7 +89,11 @@ add_executable(Lazy_sequenc1 lazy_sequence.h
         Linked_List.hpp
         ListNode.h
         mainwindow1.h
-        mainwindow1.cpp)
+        mainwindow1.cpp
+        ReadOnlyStream.h
+        WriteOnlyStream.h
+        Stream.h
+        BufferedCharEncoder.h)
 target_link_libraries(Lazy_sequenc1
         Qt::Core
         Qt::Gui
@@ -100,7 +104,11 @@ add_executable(Lazy_sequenc_test lazy_sequence.h
         Dynamic_array.hpp
         Linked_List.hpp
         ListNode.h
-        Lazy_test.h)
+        Lazy_test.h
+        ReadOnlyStream.h
+        WriteOnlyStream.h
+        Stream.h
+        BufferedCharEncoder.h)
 
 target_link_libraries(Lazy_sequenc_test PRIVATE
         GTest::gtest

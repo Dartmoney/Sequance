@@ -15,9 +15,9 @@ The package gtest is compatible with built-in CMake targets:
     
     add_test(AllTestsInMain main)
 
-All requested installations completed successfully in: 1.87 ms
+All requested installations completed successfully in: 3 ms
 -- Running vcpkg install - done
 -- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
--- Configuring done (4.0s)
--- Generating done (0.6s)
+-- Configuring done (12.0s)
+-- Generating done (1.4s)
 -- Build files have been written to: C:/Users/imako/CLionProjects/Sequance/cmake-build-debug
