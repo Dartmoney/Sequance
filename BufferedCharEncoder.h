@@ -4,19 +4,18 @@
 
 #ifndef LABA3_BUFFEREDCHARENCODER_H
 #define LABA3_BUFFEREDCHARENCODER_H
+
 #include <cstddef>
-#include "Dynamic_array.hpp"
+#include <string>
+#include <stdexcept>
 #include "Stream.h"
+#include "Dynamic_array.hpp"
 #include "Error.hpp"
 
 class BufferedCharEncoder {
-private:
-    size_t bufferSize;
-    Dynamic_array<char> buffer;
-
 public:
-    explicit BufferedCharEncoder(size_t bufSize = 1024)
-        : bufferSize(bufSize), buffer()
+    explicit BufferedCharEncoder(std::size_t bufSize = 1024)
+        : bufferSize(bufSize ? bufSize : 1), buffer()
     {
         buffer.resize(static_cast<int>(bufferSize));
     }
@@ -26,12 +25,32 @@ public:
         input.Open();
         output.Open();
 
-        try {
-            RLEEncode(input, output);
-        } catch (...) {
-            input.Close();
-            output.Close();
-            throw;
+        bool hasPrev = false;
+        char prevChar = 0;
+        std::size_t runCount = 0;
+
+        while (!input.IsEndOfStream()) {
+            int n = ReadToBuffer(input);
+            if (n <= 0) break;
+
+            for (int i = 0; i < n; ++i) {
+                char c = buffer[i];
+                if (!hasPrev) {
+                    prevChar = c;
+                    runCount = 1;
+                    hasPrev = true;
+                } else if (c == prevChar) {
+                    ++runCount;
+                } else {
+                    FlushRun(prevChar, runCount, output);
+                    prevChar = c;
+                    runCount = 1;
+                }
+            }
+        }
+
+        if (hasPrev && runCount > 0) {
+            FlushRun(prevChar, runCount, output);
         }
 
         input.Close();
@@ -39,38 +58,8 @@ public:
     }
 
 private:
-    template <typename ReadStream, typename WriteStream>
-    void RLEEncode(ReadStream& input, WriteStream& output) {
-        bool first = true;
-        char currentChar = 0;
-        int runLength = 0;
-
-        while (!input.IsEndOfStream()) {
-            int readCount = ReadToBuffer(input);
-            if (readCount == 0)
-                break;
-
-            for (int i = 0; i < readCount; ++i) {
-                char c = buffer[i];
-
-                if (first) {
-                    currentChar = c;
-                    runLength = 1;
-                    first = false;
-                } else if (c == currentChar && runLength < 9) {
-                    ++runLength;
-                } else {
-                    FlushRun(currentChar, runLength, output);
-                    currentChar = c;
-                    runLength = 1;
-                }
-            }
-        }
-
-        if (!first && runLength > 0) {
-            FlushRun(currentChar, runLength, output);
-        }
-    }
+    std::size_t bufferSize;
+    Dynamic_array<char> buffer;
 
     template <typename ReadStream>
     int ReadToBuffer(ReadStream& input) {
@@ -86,10 +75,11 @@ private:
     }
 
     template <typename WriteStream>
-    void FlushRun(char c, int runLength, WriteStream& output) {
-        char digit = static_cast<char>('0' + runLength);
-        output.Write(digit);
-        output.Write(c);
+    void FlushRun(char ch, std::size_t cnt, WriteStream& out) {
+        out.Write(ch);
+
+        std::string num = std::to_string(cnt);
+        for (char d : num) out.Write(d);
     }
 };
 

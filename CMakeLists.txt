@@ -93,7 +93,8 @@ add_executable(Lazy_sequenc1 lazy_sequence.h
         ReadOnlyStream.h
         WriteOnlyStream.h
         Stream.h
-        BufferedCharEncoder.h)
+        BufferedCharEncoder.h
+        StreamStatistics.h)
 target_link_libraries(Lazy_sequenc1
         Qt::Core
         Qt::Gui
@@ -108,7 +109,8 @@ add_executable(Lazy_sequenc_test lazy_sequence.h
         ReadOnlyStream.h
         WriteOnlyStream.h
         Stream.h
-        BufferedCharEncoder.h)
+        BufferedCharEncoder.h
+        StreamStatistics.h)
 
 target_link_libraries(Lazy_sequenc_test PRIVATE
         GTest::gtest

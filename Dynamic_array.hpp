@@ -37,7 +37,25 @@ public:
         resize(m_size + 1);
         m_data[m_size - 1] = val;
     }
+    Dynamic_array<T>& operator=(const Dynamic_array<T>& other) {
+        if (this == &other)
+            return *this;
 
+        delete[] m_data;
+
+        m_size     = other.m_size;
+        m_capacity = other.m_capacity;
+
+        if (m_capacity != 0) {
+            m_data = new T[m_capacity];
+            for (int i = 0; i < m_size; ++i)
+                m_data[i] = other.m_data[i];
+        } else {
+            m_data = nullptr;
+        }
+
+        return *this;
+    }
     int size() const;
 
     T &operator[](int i) {

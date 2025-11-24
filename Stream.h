@@ -6,311 +6,374 @@
 #define LABA3_STREAM_H
 
 #include <cstddef>
-#include <fstream>
 #include <string>
 #include <functional>
+#include <fstream>
 
 #include "Sequance.hpp"
-#include "LazySequence.hpp"
+#include "lazy_sequence.h"
+#include "Dynamic_array.hpp"
 #include "Error.hpp"
 
+template<typename T>
+using Deserializer = std::function<T(const std::string&)>;
 
-template <typename T>
+template<typename T>
+using Serializer = std::function<std::string(const T&)>;
+
+
+
+template<typename T>
 class ReadOnlyStream {
-public:
-    virtual ~ReadOnlyStream() = default;
-
-    virtual void Open() = 0;
-
-    virtual void Close() = 0;
-
-    virtual bool IsEndOfStream() const = 0;
-
-    virtual T Read() = 0;
-
-    virtual std::size_t GetPosition() const = 0;
-
-    virtual bool IsCanSeek() const = 0;
-
-    virtual std::size_t Seek(std::size_t index) = 0;
-
-    virtual bool IsCanGoBack() const = 0;
-};
-
-template <typename T>
-class WriteOnlyStream {
-public:
-    virtual ~WriteOnlyStream() = default;
-
-    virtual void Open() = 0;
-
-    virtual void Close() = 0;
-
-    virtual std::size_t GetPosition() const = 0;
-
-    virtual std::size_t Write(const T& value) = 0;
-};
-
-
-template <typename T>
-class SequenceReadOnlyStream : public ReadOnlyStream<T> {
 private:
-    Sequence<T>* seq;
-    bool ownSequence;
-    std::size_t pos;
-    bool opened;
+    enum class SourceKind {
+        None,
+        SequencePtr,
+        LazySequencePtr,
+        StringSource,
+        FileSource,
+        OtherStream
+    };
+
+    SourceKind kind = SourceKind::None;
+
+    Sequence<T>* seqSource = nullptr;
+    LazySequence<T>* lazySource = nullptr;
+
+    std::string rawString;
+    std::string fileName;
+    Deserializer<T> deserializer;
+
+    ReadOnlyStream<T>* otherStream = nullptr;
+
+    mutable size_t position = 0;
+    mutable bool opened = false;
+    mutable bool eof = false;
+
+    mutable std::ifstream fileStream;
 
 public:
-    explicit SequenceReadOnlyStream(Sequence<T>* sequence, bool own = false)
-        : seq(sequence), ownSequence(own), pos(0), opened(false) {}
+    ReadOnlyStream() = default;
 
-    ~SequenceReadOnlyStream() override {
-        if (ownSequence) {
-            delete seq;
-        }
-    }
+    explicit ReadOnlyStream(Sequence<T>* seq)
+        : kind(SourceKind::SequencePtr), seqSource(seq) {}
 
-    void Open() override {
-        pos = 0;
-        opened = true;
-    }
+    explicit ReadOnlyStream(LazySequence<T>* lazy)
+        : kind(SourceKind::LazySequencePtr), lazySource(lazy) {}
 
-    void Close() override {
-        opened = false;
-    }
+    ReadOnlyStream(const std::string& s, Deserializer<T> deser)
+        : kind(SourceKind::StringSource), rawString(s), deserializer(std::move(deser)) {}
 
-    bool IsEndOfStream() const override {
-        if (!opened) return true;
-        return pos >= static_cast<std::size_t>(seq->GetLength());
-    }
+    ReadOnlyStream(const std::string& file, Deserializer<T> deser, bool /*fromFileTag*/)
+        : kind(SourceKind::FileSource), fileName(file), deserializer(std::move(deser)) {}
 
-    T Read() override {
-        if (!opened) {
-            throw std::logic_error("Stream is not opened");
-        }
-        if (IsEndOfStream()) {
-            throw EndOfStream();
-        }
-        T value = seq->Get(static_cast<int>(pos));
-        ++pos;
-        return value;
-    }
-
-    std::size_t GetPosition() const override {
-        return pos;
-    }
-
-    bool IsCanSeek() const override {
-        return true;
-    }
-
-    std::size_t Seek(std::size_t index) override {
-        if (!opened) {
-            throw std::logic_error("Stream is not opened");
-        }
-        if (index > static_cast<std::size_t>(seq->GetLength())) {
-            index = static_cast<std::size_t>(seq->GetLength());
-        }
-        pos = index;
-        return pos;
-    }
-
-    bool IsCanGoBack() const override {
-        return true;
-    }
-};
+    explicit ReadOnlyStream(ReadOnlyStream<T>& other)
+        : kind(SourceKind::OtherStream), otherStream(&other) {}
 
 
-template <typename T>
-class LazySequenceReadOnlyStream : public ReadOnlyStream<T> {
-private:
-    LazySequence<T>* lazy;
-    bool ownSequence;
-    std::size_t pos;
-    bool opened;
-
-public:
-    explicit LazySequenceReadOnlyStream(LazySequence<T>* sequence, bool own = false)
-        : lazy(sequence), ownSequence(own), pos(0), opened(false) {};
-
-    ~LazySequenceReadOnlyStream() override {
-        if (ownSequence) {
-            delete lazy;
-        }
-    }
-
-    void Open() override {
-        pos = 0;
-        opened = true;
-    }
-
-    void Close() override {
-        opened = false;
-    }
-
-    bool IsEndOfStream() const override {
-        if (!opened) return true;
-
-
-        int length = lazy->GetLength();
-        return pos >= static_cast<std::size_t>(length);
-    }
-
-    T Read() override {
-        if (!opened) {
-            throw std::logic_error("Stream is not opened");
-        }
-        if (IsEndOfStream()) {
-            throw EndOfStream();
-        }
-        T value = lazy->Get(static_cast<int>(pos));
-        ++pos;
-        return value;
-    }
-
-    std::size_t GetPosition() const override {
-        return pos;
-    }
-
-    bool IsCanSeek() const override {
-        return true;
-    }
-
-    std::size_t Seek(std::size_t index) override {
-        if (!opened) {
-            throw std::logic_error("Stream is not opened");
-        }
-        int length = lazy->GetLength();
-        if (index > static_cast<std::size_t>(length)) {
-            index = static_cast<std::size_t>(length);
-        }
-        pos = index;
-        return pos;
-    }
-
-    bool IsCanGoBack() const override {
-        return true;
-    }
-};
-
-
-class FileReadOnlyCharStream : public ReadOnlyStream<char> {
-private:
-    std::string filename;
-    std::ifstream file;
-    std::size_t pos;
-    bool opened;
-
-public:
-    explicit FileReadOnlyCharStream(const std::string& path)
-        : filename(path), pos(0), opened(false) {}
-
-    void Open() override {
+    void Open() {
         if (opened) return;
-        file.open(filename, std::ios::binary);
-        if (!file.is_open()) {
-            throw std::runtime_error("Cannot open file for reading: " + filename);
-        }
-        pos = 0;
         opened = true;
+        position = 0;
+        eof = false;
+
+        if (kind == SourceKind::FileSource) {
+            fileStream.open(fileName);
+            if (!fileStream.is_open()) {
+                throw std::runtime_error("Cannot open file in ReadOnlyStream");
+            }
+        }
     }
 
-    void Close() override {
+    void Close() {
         if (!opened) return;
-        file.close();
         opened = false;
+        if (kind == SourceKind::FileSource && fileStream.is_open()) {
+            fileStream.close();
+        }
     }
 
-    bool IsEndOfStream() const override {
+    bool IsEndOfStream() const {
         if (!opened) return true;
-        return file.eof();
+        return eof;
     }
 
-    char Read() override {
-        if (!opened) {
-            throw std::logic_error("Stream is not opened");
+    size_t GetPosition() const {
+        return position;
+    }
+
+    bool IsCanSeek() const {
+        return kind == SourceKind::SequencePtr ||
+               kind == SourceKind::LazySequencePtr;
+    }
+
+    bool IsCanGoBack() const {
+        return IsCanSeek();
+    }
+
+    size_t Seek(size_t index) {
+        if (!opened) throw std::runtime_error("Stream is not opened");
+
+        if (!IsCanSeek())
+            throw std::runtime_error("Seek is not supported for this source");
+
+        switch (kind) {
+            case SourceKind::SequencePtr:
+                if (index > static_cast<size_t>(seqSource->GetLength()))
+                    throw IndexOutOfRange();
+                break;
+            case SourceKind::LazySequencePtr:
+                if (index > static_cast<size_t>(lazySource->GetLength()))
+                    throw IndexOutOfRange();
+                break;
+            default:
+                break;
         }
-        char c;
-        if (!file.get(c)) {
-            throw EndOfStream();
-        }
-        ++pos;
-        return c;
+
+        position = index;
+        eof = false;
+        return position;
     }
 
-    std::size_t GetPosition() const override {
-        return pos;
-    }
+    T Read() {
+        if (!opened) throw std::runtime_error("Stream is not opened");
+        if (eof) throw EndOfStream();
 
-    bool IsCanSeek() const override {
-        return true;
-    }
+        T value{};
 
-    std::size_t Seek(std::size_t index) override {
-        if (!opened) {
-            throw std::logic_error("Stream is not opened");
-        }
-        file.clear();
-        file.seekg(0, std::ios::beg);
-        pos = 0;
-
-        char c;
-        for (std::size_t i = 0; i < index; ++i) {
-            if (!file.get(c)) {
+        switch (kind) {
+            case SourceKind::SequencePtr: {
+                int len = seqSource->GetLength();
+                if (position >= static_cast<size_t>(len)) {
+                    eof = true;
+                    throw EndOfStream();
+                }
+                value = seqSource->Get(static_cast<int>(position));
+                ++position;
                 break;
             }
-            ++pos;
-        }
-        return pos;
-    }
+            case SourceKind::LazySequencePtr: {
+                int len = lazySource->GetLength();
+                if (position >= static_cast<size_t>(len)) {
+                    eof = true;
+                    throw EndOfStream();
+                }
+                value = lazySource->Get(static_cast<int>(position));
+                ++position;
+                break;
+            }
+            case SourceKind::StringSource: {
+                if (rawString.empty()) {
+                    eof = true;
+                    throw EndOfStream();
+                }
+                size_t pos = rawString.find(' ');
+                std::string token = rawString.substr(0, pos);
+                if (pos == std::string::npos)
+                    rawString.clear();
+                else
+                    rawString = rawString.substr(pos + 1);
 
-    bool IsCanGoBack() const override {
-        return true;
+                value = deserializer(token);
+                ++position;
+                if (rawString.empty())
+                    eof = true;
+                break;
+            }
+            case SourceKind::FileSource: {
+                if (!fileStream.good()) {
+                    eof = true;
+                    throw EndOfStream();
+                }
+                std::string token;
+                if (!(fileStream >> token)) {
+                    eof = true;
+                    throw EndOfStream();
+                }
+                value = deserializer(token);
+                ++position;
+                break;
+            }
+            case SourceKind::OtherStream: {
+                if (otherStream->IsEndOfStream()) {
+                    eof = true;
+                    throw EndOfStream();
+                }
+                value = otherStream->Read();
+                ++position;
+                break;
+            }
+            default:
+                throw std::runtime_error("No source set for ReadOnlyStream");
+        }
+
+        return value;
     }
 };
 
 
-class FileWriteOnlyCharStream : public WriteOnlyStream<char> {
+template<typename T>
+class WriteOnlyStream {
 private:
-    std::string filename;
-    std::ofstream file;
-    std::size_t pos;
-    bool opened;
+    enum class TargetKind {
+        None,
+        SequencePtr,
+        FileTarget,
+        OtherStream
+    };
+
+    TargetKind kind = TargetKind::None;
+
+    Sequence<T>* seqTarget = nullptr;
+    std::string fileName;
+    Serializer<T> serializer;
+    WriteOnlyStream<T>* otherStream = nullptr;
+
+    mutable size_t position = 0;
+    mutable bool opened = false;
+
+    mutable std::ofstream fileStream;
 
 public:
-    explicit FileWriteOnlyCharStream(const std::string& path)
-        : filename(path), pos(0), opened(false) {}
+    WriteOnlyStream() = default;
 
-    void Open() override {
+    explicit WriteOnlyStream(Sequence<T>* seq)
+        : kind(TargetKind::SequencePtr), seqTarget(seq) {}
+
+    WriteOnlyStream(const std::string& file, Serializer<T> ser, bool /*toFileTag*/)
+        : kind(TargetKind::FileTarget), fileName(file), serializer(std::move(ser)) {}
+
+    explicit WriteOnlyStream(WriteOnlyStream<T>& other)
+        : kind(TargetKind::OtherStream), otherStream(&other) {}
+
+    void Open() {
         if (opened) return;
-        file.open(filename, std::ios::binary | std::ios::trunc);
-        if (!file.is_open()) {
-            throw std::runtime_error("Cannot open file for writing: " + filename);
-        }
-        pos = 0;
         opened = true;
+        position = 0;
+
+        if (kind == TargetKind::FileTarget) {
+            fileStream.open(fileName);
+            if (!fileStream.is_open())
+                throw std::runtime_error("Cannot open file in WriteOnlyStream");
+        }
     }
 
-    void Close() override {
+    void Close() {
         if (!opened) return;
-        file.close();
         opened = false;
+        if (kind == TargetKind::FileTarget && fileStream.is_open()) {
+            fileStream.close();
+        }
     }
 
-    std::size_t GetPosition() const override {
-        return pos;
+    size_t GetPosition() const {
+        return position;
     }
 
-    std::size_t Write(const char& value) override {
-        if (!opened) {
-            throw std::logic_error("Stream is not opened");
+    size_t Write(const T& value) {
+        if (!opened) throw std::runtime_error("Stream is not opened");
+
+        switch (kind) {
+            case TargetKind::SequencePtr:
+                seqTarget->Append(value);
+                break;
+            case TargetKind::FileTarget: {
+                std::string token = serializer(value);
+                fileStream << token << " ";
+                break;
+            }
+            case TargetKind::OtherStream:
+                otherStream->Write(value);
+                break;
+            default:
+                throw std::runtime_error("No target set for WriteOnlyStream");
         }
-        file.put(value);
-        if (!file) {
-            throw std::runtime_error("Write error");
-        }
-        ++pos;
-        return pos;
+
+        ++position;
+        return position;
     }
 };
+class StringReadOnlyStream : public ReadOnlyStream<char> {
+public:
+    explicit StringReadOnlyStream(const std::string& data)
+        : m_data(data), m_pos(0), m_open(false) {}
+
+    void Open()  {
+        m_open = true;
+        m_pos = 0;
+    }
+
+    void Close()  {
+        m_open = false;
+    }
+
+    bool IsOpen() const  {
+        return m_open;
+    }
+
+    bool IsEndOfStream() const  {
+        return !m_open || m_pos >= m_data.size();
+    }
+
+    char Read()  {
+        if (!m_open) {
+            throw std::runtime_error("Stream is not open");
+        }
+        if (IsEndOfStream()) {
+            throw std::runtime_error("EndOfStream");
+        }
+        return m_data[m_pos++];
+    }
+
+    std::size_t GetPosition() const  {
+        return m_pos;
+    }
+
+private:
+    std::string m_data;
+    std::size_t m_pos;
+    bool m_open;
+};
+
+class StringWriteOnlyStream : public WriteOnlyStream<char> {
+public:
+    StringWriteOnlyStream()
+        : m_pos(0), m_open(false) {}
+
+    void Open()  {
+        m_open = true;
+        m_buffer.clear();
+        m_pos = 0;
+    }
+
+    void Close()  {
+        m_open = false;
+    }
+
+    bool IsOpen() const  {
+        return m_open;
+    }
+
+    void Write(const char& value)  {
+        if (!m_open) {
+            throw std::runtime_error("Stream is not open");
+        }
+        m_buffer.push_back(value);
+        ++m_pos;
+    }
+
+    std::size_t GetPosition() const  {
+        return m_pos;
+    }
+
+    std::string GetResult() const {
+        return m_buffer;
+    }
+
+private:
+    std::string m_buffer;
+    std::size_t m_pos;
+    bool m_open;
+};
+
 #endif //LABA3_STREAM_H

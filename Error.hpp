@@ -13,4 +13,10 @@ public:
     }
 };
 
+class EndOfStream : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "End of stream";
+    }
+};
 #endif //LABA_2_ERROR_HPP

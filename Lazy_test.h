@@ -9,10 +9,9 @@
 #include "Error.hpp"
 #include "lazy_sequence.h"
 #include "Error.hpp"
-#include "ReadOnlyStream.h"
-#include "WriteOnlyStream.h"
-
-
+#include "Stream.h"
+#include "BufferedCharEncoder.h"
+#include "StreamStatistics.h"
 static LazySequence<int> makeFiniteSeq(int n) {
     std::function<int(int)> gen = [](int i) {
         return i + 1;
@@ -20,8 +19,6 @@ static LazySequence<int> makeFiniteSeq(int n) {
     return LazySequence<int>(gen, n);
 }
 
-// Бесконечная последовательность a[i] = 2*i  → [0,2,4,6,...]
-// (если у тебя есть статический метод Infinite)
 static LazySequence<int> makeInfiniteSeq() {
     std::function<int(int)> gen = [](int i) {
         return 2 * i;
@@ -29,10 +26,9 @@ static LazySequence<int> makeInfiniteSeq() {
     return LazySequence<int>::Infinite(gen);
 }
 
-// ---------- ТЕСТЫ ДЛЯ КОНЕЧНОЙ ПОСЛЕДОВАТЕЛЬНОСТИ ----------
 
 TEST(LazySequenceTest, GetFiniteBasic) {
-    auto seq = makeFiniteSeq(5); // логически: [1,2,3,4,5]
+    auto seq = makeFiniteSeq(5);
 
     EXPECT_EQ(seq.GetLength(), 5);
     EXPECT_EQ(seq.GetFirst(), 1);
@@ -42,7 +38,6 @@ TEST(LazySequenceTest, GetFiniteBasic) {
     EXPECT_EQ(seq.Get(1), 2);
     EXPECT_EQ(seq.Get(4), 5);
 
-    // оператор []
     EXPECT_EQ(seq[2], 3);
 }
 
@@ -144,8 +139,6 @@ TEST(LazySequenceTest, InsertAtOutOfRangeThrows) {
     EXPECT_THROW(seq.InsertAt(100, 4), IndexOutOfRange);
 }
 
-// ---------- Subsequence ----------
-
 TEST(LazySequenceTest, GetSubsequenceFinite) {
     auto seq = makeFiniteSeq(5); // [1,2,3,4,5]
 
@@ -167,7 +160,6 @@ TEST(LazySequenceTest, GetSubsequenceOutOfRange) {
     EXPECT_THROW(seq.GetSubsequence(3, 2), IndexOutOfRange); // start > end
 }
 
-// ---------- Concat / AppendImmut ----------
 
 TEST(LazySequenceTest, ConcatFinite) {
     auto seq1 = makeFiniteSeq(3); // [1,2,3]
@@ -196,14 +188,12 @@ TEST(LazySequenceTest, AppendImmutFinite) {
     EXPECT_EQ(extended->Get(2), 3);
     EXPECT_EQ(extended->Get(3), 10);
 
-    // исходный seq не изменяется
     EXPECT_EQ(seq.GetLength(), 3);
     EXPECT_EQ(seq.Get(2), 3);
 
     delete extended;
 }
 
-// ---------- Map / Reduce (для конечной) ----------
 
 TEST(LazySequenceTest, MapFinite) {
     auto seq = makeFiniteSeq(4); // [1,2,3,4]
@@ -233,12 +223,10 @@ TEST(LazySequenceTest, ReduceFinite) {
     EXPECT_EQ(sum, 10); // 1+2+3+4
 }
 
-// ---------- БЕСКОНЕЧНАЯ ПОСЛЕДОВАТЕЛЬНОСТЬ ----------
 
 TEST(LazySequenceInfiniteTest, GetSomeElements) {
     auto seq = makeInfiniteSeq(); // [0,2,4,6,8,...]
 
-    // GetLength должен кидать исключение
     EXPECT_THROW(seq.GetLength(), std::logic_error);
 
     EXPECT_EQ(seq.Get(0), 0);
@@ -277,45 +265,44 @@ TEST(LazySequenceInfiniteTest, AppendInfiniteNotAllowed) {
     EXPECT_THROW(seq.AppendImmut(10), std::logic_error);
     EXPECT_THROW(seq.Concat(&seq), std::logic_error);
 }
-
-template<typename T>
-class ArraySequenceMock : public Sequence<T> {
+template <typename T>
+class SimpleSequence : public Sequence<T> {
 private:
     Dynamic_array<T> data;
 
 public:
-    ArraySequenceMock() = default;
+    SimpleSequence() = default;
 
-    ArraySequenceMock(T* items, int count) {
-        data.resize(count);
-        for (int i = 0; i < count; ++i) {
-            data[i] = items[i];
-        }
+    explicit SimpleSequence(const Dynamic_array<T>& arr) : data(arr) {}
+
+    void PushBack(const T& value) {
+        data.push_back(value);
     }
 
-    ~ArraySequenceMock() override = default;
+    // --- Реализация виртуальных методов ---
 
     T GetFirst() const override {
-        if (data.size() == 0) throw IndexOutOfRange();
+        if (GetLength() == 0) throw IndexOutOfRange();
         return data[0];
     }
 
     T GetLast() const override {
-        if (data.size() == 0) throw IndexOutOfRange();
-        return data[data.size() - 1];
+        int len = GetLength();
+        if (len == 0) throw IndexOutOfRange();
+        return data[len - 1];
     }
 
     T Get(int index) const override {
         return data[index];
     }
 
-    Sequence<T>* GetSubsequence(int startIndex, int endIndex) const override {
-        if (startIndex < 0 || endIndex < startIndex || endIndex >= data.size())
+    Sequence<T>* GetSubsequence(int start, int end) const override {
+        if (start < 0 || end < start || end >= GetLength())
             throw IndexOutOfRange();
-        auto* result = new ArraySequenceMock<T>();
-        result->data.resize(endIndex - startIndex + 1);
-        for (int i = 0; i <= endIndex - startIndex; ++i) {
-            result->data[i] = data[startIndex + i];
+
+        auto* result = new SimpleSequence<T>();
+        for (int i = start; i <= end; ++i) {
+            result->PushBack(data[i]);
         }
         return result;
     }
@@ -340,52 +327,34 @@ public:
     }
 
     Sequence<T>* InsertAt(T item, int index) override {
-        if (index < 0 || index > data.size())
+        if (index < 0 || index > GetLength())
             throw IndexOutOfRange();
+
         Dynamic_array<T> tmp;
         tmp.resize(data.size() + 1);
         for (int i = 0, j = 0; i < tmp.size(); ++i) {
-            if (i == index) tmp[i] = item;
-            else tmp[i] = data[j++];
+            if (i == index) {
+                tmp[i] = item;
+            } else {
+                tmp[i] = data[j++];
+            }
         }
         data = tmp;
         return this;
     }
 
     Sequence<T>* Concat(Sequence<T>* other) override {
-        int total = data.size() + other->GetLength();
-        Dynamic_array<T> tmp;
-        tmp.resize(total);
-        int k = 0;
-        for (int i = 0; i < data.size(); ++i) tmp[k++] = data[i];
-        for (int i = 0; i < other->GetLength(); ++i) tmp[k++] = other->Get(i);
-        data = tmp;
+        int len = other->GetLength();
+        for (int i = 0; i < len; ++i) {
+            data.push_back(other->Get(i));
+        }
         return this;
     }
 
     Sequence<T>* AppendImmut(T item) override {
-        auto* res = new ArraySequenceMock<T>();
-        res->data.resize(data.size() + 1);
-        for (int i = 0; i < data.size(); ++i) res->data[i] = data[i];
-        res->data[data.size()] = item;
-        return res;
-    }
-
-    template<typename U>
-    Sequence<U>* Map(std::function<U(T)> func) const {
-        auto* res = new ArraySequenceMock<U>();
-        res->data.resize(data.size());
-        for (int i = 0; i < data.size(); ++i)
-            res->data[i] = func(data[i]);
-        return res;
-    }
-
-    template<typename U>
-    U Reduce(std::function<U(U, T)> func, U initial) const {
-        U acc = initial;
-        for (int i = 0; i < data.size(); ++i)
-            acc = func(acc, data[i]);
-        return acc;
+        auto* copy = new SimpleSequence<T>(*this);
+        copy->Append(item);
+        return copy;
     }
 
     T& operator[](int index) override {
@@ -397,136 +366,247 @@ public:
     }
 };
 
-// ----------------- ТЕСТЫ ДЛЯ ReadOnlyStream С SEQUENCE -----------------
+// ======================= ТЕСТЫ ДЛЯ ReadOnlyStream =======================
 
-TEST(ReadOnlyStreamSequenceTest, ReadSequentially) {
-    int arr[] = {1, 2, 3, 4, 5};
-    ArraySequenceMock<int> seq(arr, 5);
+TEST(ReadOnlyStreamTest, ReadFromSequenceBasic) {
+    // Подготовим последовательность  {10, 20, 30}
+    Dynamic_array<int> arr;
+    arr.push_back(10);
+    arr.push_back(20);
+    arr.push_back(30);
 
-    ReadOnlyStream<int> stream(&seq);
-    stream.Open();
+    auto* seq = new SimpleSequence<int>(arr);
 
-    EXPECT_EQ(stream.IsEndOfStream(), false);
-    EXPECT_EQ(stream.GetPosition(), 0u);
-
-    EXPECT_EQ(stream.Read(), 1);
-    EXPECT_EQ(stream.GetPosition(), 1u);
-
-    EXPECT_EQ(stream.Read(), 2);
-    EXPECT_EQ(stream.Read(), 3);
-    EXPECT_EQ(stream.Read(), 4);
-    EXPECT_EQ(stream.Read(), 5);
-    EXPECT_EQ(stream.GetPosition(), 5u);
-
-    EXPECT_THROW(stream.Read(), EndOfStream);
-}
-
-TEST(ReadOnlyStreamSequenceTest, SeekAndGoBack) {
-    int arr[] = {10, 20, 30, 40};
-    ArraySequenceMock<int> seq(arr, 4);
-
-    ReadOnlyStream<int> stream(&seq);
-    stream.Open();
-
-    EXPECT_TRUE(stream.IsCanSeek());
-    EXPECT_TRUE(stream.IsCanGoBack());
-
-    // читаем первые два
-    EXPECT_EQ(stream.Read(), 10);
-    EXPECT_EQ(stream.Read(), 20);
-    EXPECT_EQ(stream.GetPosition(), 2u);
-
-    // прыгаем назад
-    size_t newPos = stream.Seek(1);
-    EXPECT_EQ(newPos, 1u);
-    EXPECT_EQ(stream.GetPosition(), 1u);
-
-    // снова читаем с 2-го элемента
-    EXPECT_EQ(stream.Read(), 20);
-    EXPECT_EQ(stream.Read(), 30);
-    EXPECT_EQ(stream.Read(), 40);
-    EXPECT_THROW(stream.Read(), EndOfStream);
-}
-
-// ----------------- ТЕСТЫ ДЛЯ WriteOnlyStream С SEQUENCE -----------------
-
-TEST(WriteOnlyStreamSequenceTest, WriteToSequence) {
-    ArraySequenceMock<int> seq;
-
-    WriteOnlyStream<int> out(&seq);
-    out.Open();
-
-    EXPECT_EQ(out.GetPosition(), 0u);
-
-    EXPECT_EQ(out.Write(100), 1u);
-    EXPECT_EQ(out.Write(200), 2u);
-    EXPECT_EQ(out.Write(300), 3u);
-
-    out.Close();
-
-    EXPECT_EQ(seq.GetLength(), 3);
-    EXPECT_EQ(seq.Get(0), 100);
-    EXPECT_EQ(seq.Get(1), 200);
-    EXPECT_EQ(seq.Get(2), 300);
-}
-
-// ----------------- ТЕСТЫ ДЛЯ ReadOnlyStream С LazySequence -----------------
-
-TEST(ReadOnlyStreamLazyTest, ReadFromLazyFinite) {
-    // lazy: f(i) = i+1, length = 5 → [1,2,3,4,5]
-    std::function<int(int)> gen = [](int i) { return i + 1; };
-    LazySequence<int> lazy(gen, 5);
-
-    ReadOnlyStream<int> stream(&lazy);
+    ReadOnlyStream<int> stream(seq);   // используется твой конструктор из Sequence*
     stream.Open();
 
     EXPECT_FALSE(stream.IsEndOfStream());
-    EXPECT_TRUE(stream.IsCanSeek()); // finite lazy
+    EXPECT_EQ(stream.GetPosition(), 0u);
 
-    EXPECT_EQ(stream.Read(), 1);
-    EXPECT_EQ(stream.Read(), 2);
+    int a = stream.Read();
+    EXPECT_EQ(a, 10);
+    EXPECT_EQ(stream.GetPosition(), 1u);
+    EXPECT_FALSE(stream.IsEndOfStream());
+
+    int b = stream.Read();
+    EXPECT_EQ(b, 20);
     EXPECT_EQ(stream.GetPosition(), 2u);
 
-    size_t pos = stream.Seek(4);
-    EXPECT_EQ(pos, 4u);
-    EXPECT_EQ(stream.Read(), 5);
+    int c = stream.Read();
+    EXPECT_EQ(c, 30);
+    EXPECT_EQ(stream.GetPosition(), 3u);
+    EXPECT_TRUE(stream.IsEndOfStream());
+
+    // Попытка прочитать за концом должна кидать EndOfStream
     EXPECT_THROW(stream.Read(), EndOfStream);
+
+    stream.Close();
+    delete seq;   // ReadOnlyStream читает, но не владеет
 }
 
-// ----------------- ТЕСТЫ ДЛЯ WriteOnlyStream С ФАЙЛОМ -----------------
-// Если не хочешь возиться с файлами — этот блок можно закомментировать
+TEST(ReadOnlyStreamTest, SeekInsideSequence) {
+    Dynamic_array<int> arr;
+    for (int i = 0; i < 5; ++i) arr.push_back(i * 10); // 0 10 20 30 40
+    auto* seq = new SimpleSequence<int>(arr);
 
-TEST(WriteOnlyStreamFileTest, WriteIntsToFile) {
-    // очень простой сериализатор: число -> строка
-    Serializer<int> ser = [](const int& x) {
-        return std::to_string(x);
-    };
+    ReadOnlyStream<int> stream(seq);
+    stream.Open();
 
-    const std::string filename = "test_output_stream.txt";
+    ASSERT_TRUE(stream.IsCanSeek());
 
-    {
-        WriteOnlyStream<int> out(filename, ser);
-        out.Open();
-        out.Write(10);
-        out.Write(20);
-        out.Write(30);
-        out.Close();
+    // Перейдём сразу на позицию 2 (элемент 20)
+    size_t pos = stream.Seek(2);
+    EXPECT_EQ(pos, 2u);
+    EXPECT_EQ(stream.GetPosition(), 2u);
+
+    int v = stream.Read();  // должен быть 20
+    EXPECT_EQ(v, 20);
+    EXPECT_EQ(stream.GetPosition(), 3u);
+
+    // Перейдём обратно на позицию 1
+    if (stream.IsCanGoBack()) {
+        size_t pos2 = stream.Seek(1);
+        EXPECT_EQ(pos2, 1u);
+        int v2 = stream.Read();   // должен быть 10
+        EXPECT_EQ(v2, 10);
     }
 
-    // Проверяем файл (не обязательно для зачёта, но полезно)
-    std::ifstream in(filename);
-    ASSERT_TRUE(in.is_open());
-
-    std::string line;
-    std::getline(in, line);
-    EXPECT_EQ(line, "10");
-    std::getline(in, line);
-    EXPECT_EQ(line, "20");
-    std::getline(in, line);
-    EXPECT_EQ(line, "30");
-
-    in.close();
+    stream.Close();
+    delete seq;
 }
+
+// ======================= ТЕСТЫ ДЛЯ WriteOnlyStream =======================
+
+TEST(WriteOnlyStreamTest, WriteToSequenceBasic) {
+    auto* seq = new SimpleSequence<int>();
+
+    WriteOnlyStream<int> stream(seq);   // конструктор из Sequence*
+    stream.Open();
+
+    EXPECT_EQ(stream.GetPosition(), 0u);
+
+    size_t p1 = stream.Write(5);
+    EXPECT_EQ(p1, 1u);
+    EXPECT_EQ(stream.GetPosition(), 1u);
+
+    size_t p2 = stream.Write(10);
+    EXPECT_EQ(p2, 2u);
+    EXPECT_EQ(stream.GetPosition(), 2u);
+
+    size_t p3 = stream.Write(15);
+    EXPECT_EQ(p3, 3u);
+    EXPECT_EQ(stream.GetPosition(), 3u);
+
+    stream.Close();
+
+    // Проверяем, что данные реально записались в последовательность
+    EXPECT_EQ(seq->GetLength(), 3);
+    EXPECT_EQ(seq->Get(0), 5);
+    EXPECT_EQ(seq->Get(1), 10);
+    EXPECT_EQ(seq->Get(2), 15);
+
+    delete seq;
+}
+
+
+TEST(BufferedCharEncoderTests, EncodeSimpleString) {
+    std::string input = "aaabbccccdd";
+    std::string expected = "a3b2c4d2";
+
+    StringReadOnlyStream in(input);
+    StringWriteOnlyStream out;
+
+    in.Open();
+    out.Open();
+
+    BufferedCharEncoder encoder(4);
+    encoder.Encode(in, out);
+
+    out.Close();
+    in.Close();
+
+    std::string encoded = out.GetResult();
+    EXPECT_EQ(encoded, expected);
+}
+
+
+TEST(BufferedCharEncoderTests, EncodeSingleChar) {
+    std::string input = "aaaaa";
+    std::string expected = "a5";
+
+    StringReadOnlyStream in(input);
+    StringWriteOnlyStream out;
+
+    in.Open();
+    out.Open();
+
+    BufferedCharEncoder encoder(2);
+    encoder.Encode(in, out);
+
+    out.Close();
+    in.Close();
+
+    EXPECT_EQ(out.GetResult(), expected);
+}
+
+
+TEST(BufferedCharEncoderTests, EncodeEmptyString) {
+    std::string input;
+    std::string expected;
+
+    StringReadOnlyStream in(input);
+    StringWriteOnlyStream out;
+
+    in.Open();
+    out.Open();
+
+    BufferedCharEncoder encoder(8);
+    encoder.Encode(in, out);
+
+    out.Close();
+    in.Close();
+
+    EXPECT_EQ(out.GetResult(), expected);
+}
+
+
+TEST(BufferedCharEncoderTests, BufferBoundary) {
+    std::string input = "aaaaa";
+    std::string expected = "a5";
+
+    StringReadOnlyStream in(input);
+    StringWriteOnlyStream out;
+
+    in.Open();
+    out.Open();
+
+    BufferedCharEncoder encoder(3);
+    encoder.Encode(in, out);
+
+    out.Close();
+    in.Close();
+
+    EXPECT_EQ(out.GetResult(), expected);
+}
+
+static int IntFromString(const std::string& s) {
+    return std::stoi(s);
+}
+
+TEST(StringStreamStatisticsTest, EmptyString) {
+    std::string data = "";
+    StringStreamStatistics stats(data);
+
+    stats.ConsumeAll();
+
+    EXPECT_EQ(stats.GetCount(), 0);
+    EXPECT_EQ(stats.GetSum(), 0);
+
+    EXPECT_THROW(stats.GetMean(), std::logic_error);
+    EXPECT_THROW(stats.GetMin(), std::logic_error);
+    EXPECT_THROW(stats.GetMax(), std::logic_error);
+}
+
+TEST(StringStreamStatisticsTest, SingleChar) {
+    std::string data = "A";
+    StringStreamStatistics stats(data);
+
+    stats.ConsumeAll();
+
+    EXPECT_EQ(stats.GetCount(), 1);
+    EXPECT_EQ(stats.GetSum(), 65);
+    EXPECT_DOUBLE_EQ((double)stats.GetMean(), 65.0);
+    EXPECT_EQ(stats.GetMin(), 'A');
+    EXPECT_EQ(stats.GetMax(), 'A');
+}
+
+TEST(StringStreamStatisticsTest, SeveralChars) {
+    std::string data = "abcde";
+    StringStreamStatistics stats(data);
+
+    stats.ConsumeAll();
+
+    EXPECT_EQ(stats.GetCount(), 5);
+    EXPECT_EQ(stats.GetSum(), 97 + 98 + 99 + 100 + 101);
+    EXPECT_DOUBLE_EQ((double)stats.GetMean(), (97 + 98 + 99 + 100 + 101) / 5.0);
+    EXPECT_EQ(stats.GetMin(), 'a');
+    EXPECT_EQ(stats.GetMax(), 'e');
+}
+
+TEST(StringStreamStatisticsTest, ManualAddValue) {
+    // можно использовать без потока
+    std::string dummy = "";
+    StringStreamStatistics stats(dummy);
+
+    stats.AddValue('b');
+    stats.AddValue('A');
+    stats.AddValue('z');
+
+    EXPECT_EQ(stats.GetCount(), 3u);
+    EXPECT_EQ(stats.GetMin(), 'A');
+    EXPECT_EQ(stats.GetMax(), 'z');
+}
+
 
 int test(int argc, char *argv[]) {
     testing::InitGoogleTest(&argc, argv);
