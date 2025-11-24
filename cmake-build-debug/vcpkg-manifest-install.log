@@ -13,4 +13,4 @@ The package gtest is compatible with built-in CMake targets:
     
     add_test(AllTestsInMain main)
 
-All requested installations completed successfully in: 2.94 ms
+All requested installations completed successfully in: 2.36 ms

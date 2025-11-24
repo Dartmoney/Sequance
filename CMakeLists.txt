@@ -90,8 +90,6 @@ add_executable(Lazy_sequenc1 lazy_sequence.h
         ListNode.h
         mainwindow1.h
         mainwindow1.cpp
-        ReadOnlyStream.h
-        WriteOnlyStream.h
         Stream.h
         BufferedCharEncoder.h
         StreamStatistics.h)
@@ -106,8 +104,6 @@ add_executable(Lazy_sequenc_test lazy_sequence.h
         Linked_List.hpp
         ListNode.h
         Lazy_test.h
-        ReadOnlyStream.h
-        WriteOnlyStream.h
         Stream.h
         BufferedCharEncoder.h
         StreamStatistics.h)
