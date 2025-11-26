@@ -1,12 +1,14 @@
-// #include <QApplication>
+#include <QApplication>
 // #include <QPushButton>
 // #include "mainwindow.hpp"
 #include "Dynamic_array.hpp"
 #include "Linked_List.hpp"
 // #include "All_test.hpp"
 // #include "Matrix.hpp"
-#include "Lazy_test.h"
+// #include "Lazy_test.h"
 #include <iostream>
+// #include "StreamStatsWindow.h"
+#include "BufferedEncoderWindow.h"
 //#include <math.h>
 using namespace std;
 
@@ -58,9 +60,12 @@ using namespace std;
 //}
 
 int main(int argc, char *argv[]) {
-    // QApplication a(argc, argv);
-    // MainWindow window;
-    //     // window.show();
-    // a.exec()
-    return test(argc, argv);
+    QApplication app(argc, argv);
+
+    BufferedEncoderWindow window;
+    window.show();
+
+    return app.exec();
+
+    // test(argc, argv)
 }

@@ -594,7 +594,6 @@ TEST(StringStreamStatisticsTest, SeveralChars) {
 }
 
 TEST(StringStreamStatisticsTest, ManualAddValue) {
-    // можно использовать без потока
     std::string dummy = "";
     StringStreamStatistics stats(dummy);
 

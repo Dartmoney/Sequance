@@ -88,11 +88,13 @@ add_executable(Lazy_sequenc1 lazy_sequence.h
         Dynamic_array.hpp
         Linked_List.hpp
         ListNode.h
-        mainwindow1.h
-        mainwindow1.cpp
         Stream.h
         BufferedCharEncoder.h
-        StreamStatistics.h)
+        StreamStatistics.h
+        StreamStatsWindow.h
+        StreamStatsWindow.cpp
+        BufferedEncoderWindow.h
+        BufferedEncoderWindow.cpp)
 target_link_libraries(Lazy_sequenc1
         Qt::Core
         Qt::Gui
