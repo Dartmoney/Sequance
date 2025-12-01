@@ -2,7 +2,7 @@
 #ifndef LABA3_STREAMSTATISTICS_H
 #define LABA3_STREAMSTATISTICS_H
 
-#include "Stream.h"   // здесь лежит StringReadOnlyStream<char>
+#include "Stream.h"
 #include <stdexcept>
 
 class StringStreamStatistics {
@@ -39,10 +39,9 @@ public:
             if (c > maxVal) maxVal = c;
         }
         count++;
-        sum += static_cast<unsigned char>(c); // чтобы не было проблем с signed char
+        sum += static_cast<unsigned char>(c);
     }
 
-    // ===== геттеры =====
     size_t GetCount() const { return count; }
     long double GetSum() const { return sum; }
 
