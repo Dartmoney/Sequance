@@ -5,6 +5,7 @@
 #ifndef LABA3_LAZY_TEST_H
 #define LABA3_LAZY_TEST_H
 #include <gtest/gtest.h>
+#include <memory>
 #include "Dynamic_array.hpp"
 #include "Error.hpp"
 #include "lazy_sequence.h"
@@ -375,7 +376,7 @@ TEST(ReadOnlyStreamTest, ReadFromSequenceBasic) {
     arr.push_back(20);
     arr.push_back(30);
 
-    auto* seq = new SimpleSequence<int>(arr);
+    auto seq = std::make_shared<SimpleSequence<int>>(arr);
 
     ReadOnlyStream<int> stream(seq);   // используется твой конструктор из Sequence*
     stream.Open();
@@ -401,13 +402,12 @@ TEST(ReadOnlyStreamTest, ReadFromSequenceBasic) {
     EXPECT_THROW(stream.Read(), EndOfStream);
 
     stream.Close();
-    delete seq;   // ReadOnlyStream читает, но не владеет
 }
 
 TEST(ReadOnlyStreamTest, SeekInsideSequence) {
     Dynamic_array<int> arr;
     for (int i = 0; i < 5; ++i) arr.push_back(i * 10); // 0 10 20 30 40
-    auto* seq = new SimpleSequence<int>(arr);
+    auto seq = std::make_shared<SimpleSequence<int>>(arr);
 
     ReadOnlyStream<int> stream(seq);
     stream.Open();
@@ -432,13 +432,12 @@ TEST(ReadOnlyStreamTest, SeekInsideSequence) {
     }
 
     stream.Close();
-    delete seq;
 }
 
 // ======================= ТЕСТЫ ДЛЯ WriteOnlyStream =======================
 
 TEST(WriteOnlyStreamTest, WriteToSequenceBasic) {
-    auto* seq = new SimpleSequence<int>();
+    auto seq = std::make_shared<SimpleSequence<int>>();
 
     WriteOnlyStream<int> stream(seq);   // конструктор из Sequence*
     stream.Open();
@@ -464,8 +463,6 @@ TEST(WriteOnlyStreamTest, WriteToSequenceBasic) {
     EXPECT_EQ(seq->Get(0), 5);
     EXPECT_EQ(seq->Get(1), 10);
     EXPECT_EQ(seq->Get(2), 15);
-
-    delete seq;
 }
 
 

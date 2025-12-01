@@ -6,9 +6,10 @@
 #define LABA3_STREAM_H
 
 #include <cstddef>
-#include <string>
 #include <functional>
 #include <fstream>
+#include <memory>
+#include <string>
 
 #include "Sequance.hpp"
 #include "lazy_sequence.h"
@@ -37,14 +38,14 @@ private:
 
     SourceKind kind = SourceKind::None;
 
-    Sequence<T>* seqSource = nullptr;
-    LazySequence<T>* lazySource = nullptr;
+    std::shared_ptr<Sequence<T>> seqSource;
+    std::shared_ptr<LazySequence<T>> lazySource;
 
     std::string rawString;
     std::string fileName;
     Deserializer<T> deserializer;
 
-    ReadOnlyStream<T>* otherStream = nullptr;
+    std::weak_ptr<ReadOnlyStream<T>> otherStream;
 
     mutable size_t position = 0;
     mutable bool opened = false;
@@ -55,11 +56,11 @@ private:
 public:
     ReadOnlyStream() = default;
 
-    explicit ReadOnlyStream(Sequence<T>* seq)
-        : kind(SourceKind::SequencePtr), seqSource(seq) {}
+    explicit ReadOnlyStream(std::shared_ptr<Sequence<T>> seq)
+        : kind(SourceKind::SequencePtr), seqSource(std::move(seq)) {}
 
-    explicit ReadOnlyStream(LazySequence<T>* lazy)
-        : kind(SourceKind::LazySequencePtr), lazySource(lazy) {}
+    explicit ReadOnlyStream(std::shared_ptr<LazySequence<T>> lazy)
+        : kind(SourceKind::LazySequencePtr), lazySource(std::move(lazy)) {}
 
     ReadOnlyStream(const std::string& s, Deserializer<T> deser)
         : kind(SourceKind::StringSource), rawString(s), deserializer(std::move(deser)) {}
@@ -67,8 +68,8 @@ public:
     ReadOnlyStream(const std::string& file, Deserializer<T> deser, bool /*fromFileTag*/)
         : kind(SourceKind::FileSource), fileName(file), deserializer(std::move(deser)) {}
 
-    explicit ReadOnlyStream(ReadOnlyStream<T>& other)
-        : kind(SourceKind::OtherStream), otherStream(&other) {}
+    explicit ReadOnlyStream(const std::shared_ptr<ReadOnlyStream<T>>& other)
+        : kind(SourceKind::OtherStream), otherStream(other) {}
 
 
     void Open() {
@@ -103,8 +104,8 @@ public:
     }
 
     bool IsCanSeek() const {
-        return kind == SourceKind::SequencePtr ||
-               kind == SourceKind::LazySequencePtr;
+        return (kind == SourceKind::SequencePtr && seqSource != nullptr) ||
+               (kind == SourceKind::LazySequencePtr && lazySource != nullptr);
     }
 
     bool IsCanGoBack() const {
@@ -119,10 +120,14 @@ public:
 
         switch (kind) {
             case SourceKind::SequencePtr:
+                if (!seqSource)
+                    throw std::runtime_error("Sequence source is not set");
                 if (index > static_cast<size_t>(seqSource->GetLength()))
                     throw IndexOutOfRange();
                 break;
             case SourceKind::LazySequencePtr:
+                if (!lazySource)
+                    throw std::runtime_error("Lazy sequence source is not set");
                 if (index > static_cast<size_t>(lazySource->GetLength()))
                     throw IndexOutOfRange();
                 break;
@@ -143,6 +148,8 @@ public:
 
         switch (kind) {
             case SourceKind::SequencePtr: {
+                if (!seqSource)
+                    throw std::runtime_error("Sequence source is not set");
                 int len = seqSource->GetLength();
                 if (position >= static_cast<size_t>(len)) {
                     eof = true;
@@ -153,6 +160,8 @@ public:
                 break;
             }
             case SourceKind::LazySequencePtr: {
+                if (!lazySource)
+                    throw std::runtime_error("Lazy sequence source is not set");
                 int len = lazySource->GetLength();
                 if (position >= static_cast<size_t>(len)) {
                     eof = true;
@@ -195,11 +204,14 @@ public:
                 break;
             }
             case SourceKind::OtherStream: {
-                if (otherStream->IsEndOfStream()) {
+                auto other = otherStream.lock();
+                if (!other)
+                    throw std::runtime_error("Other stream expired");
+                if (other->IsEndOfStream()) {
                     eof = true;
                     throw EndOfStream();
                 }
-                value = otherStream->Read();
+                value = other->Read();
                 ++position;
                 break;
             }
@@ -224,10 +236,10 @@ private:
 
     TargetKind kind = TargetKind::None;
 
-    Sequence<T>* seqTarget = nullptr;
+    std::shared_ptr<Sequence<T>> seqTarget;
     std::string fileName;
     Serializer<T> serializer;
-    WriteOnlyStream<T>* otherStream = nullptr;
+    std::weak_ptr<WriteOnlyStream<T>> otherStream;
 
     mutable size_t position = 0;
     mutable bool opened = false;
@@ -237,14 +249,14 @@ private:
 public:
     WriteOnlyStream() = default;
 
-    explicit WriteOnlyStream(Sequence<T>* seq)
-        : kind(TargetKind::SequencePtr), seqTarget(seq) {}
+    explicit WriteOnlyStream(std::shared_ptr<Sequence<T>> seq)
+        : kind(TargetKind::SequencePtr), seqTarget(std::move(seq)) {}
 
     WriteOnlyStream(const std::string& file, Serializer<T> ser, bool /*toFileTag*/)
         : kind(TargetKind::FileTarget), fileName(file), serializer(std::move(ser)) {}
 
-    explicit WriteOnlyStream(WriteOnlyStream<T>& other)
-        : kind(TargetKind::OtherStream), otherStream(&other) {}
+    explicit WriteOnlyStream(const std::shared_ptr<WriteOnlyStream<T>>& other)
+        : kind(TargetKind::OtherStream), otherStream(other) {}
 
     void Open() {
         if (opened) return;
@@ -275,6 +287,8 @@ public:
 
         switch (kind) {
             case TargetKind::SequencePtr:
+                if (!seqTarget)
+                    throw std::runtime_error("Sequence target is not set");
                 seqTarget->Append(value);
                 break;
             case TargetKind::FileTarget: {
@@ -283,7 +297,11 @@ public:
                 break;
             }
             case TargetKind::OtherStream:
-                otherStream->Write(value);
+                if (auto target = otherStream.lock()) {
+                    target->Write(value);
+                } else {
+                    throw std::runtime_error("Other stream expired");
+                }
                 break;
             default:
                 throw std::runtime_error("No target set for WriteOnlyStream");
