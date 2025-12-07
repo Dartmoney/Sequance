@@ -4,64 +4,95 @@
 
 #ifndef ARRAYSEQUENCE_HPP
 #define ARRAYSEQUENCE_HPP
+#include <initializer_list>
+#include <memory>
+
 #include "Dynamic_array.hpp"
 #include "Sequance.hpp"
 #include "Error.hpp"
 template <typename T>
 class ArraySequence : public Sequence<T> {
 private:
-    Dynamic_array<T>* array;
+    std::unique_ptr<Dynamic_array<T>> array;
+
+    explicit ArraySequence(std::unique_ptr<Dynamic_array<T>> data) : array(std::move(data)) {}
+
 public:
-    ArraySequence() : array(new Dynamic_array<T>()) {}
-    ArraySequence(T* items, int count) : array(new Dynamic_array<T>(items, count)) {}
-    ArraySequence(const ArraySequence<T>& other) : array(new Dynamic_array<T>(*other.array)) {}
-    ~ArraySequence() override { delete array; }
+    ArraySequence() : array(std::make_unique<Dynamic_array<T>>()) {}
+    ArraySequence(T* items, int count) : array(std::make_unique<Dynamic_array<T>>(items, count)) {}
+    ArraySequence(std::initializer_list<T> init) : array(std::make_unique<Dynamic_array<T>>(static_cast<int>(init.size()))) {
+        int index = 0;
+        for (const auto& value : init) {
+            array->Set(index++, value);
+        }
+    }
+    ArraySequence(const ArraySequence<T>& other) : array(std::make_unique<Dynamic_array<T>>(*other.array)) {}
+    ArraySequence(ArraySequence<T>&& other) noexcept = default;
+    ArraySequence<T>& operator=(const ArraySequence<T>& other) {
+        if (this == &other) {
+            return *this;
+        }
+        array = std::make_unique<Dynamic_array<T>>(*other.array);
+        return *this;
+    }
+    ArraySequence<T>& operator=(ArraySequence<T>&& other) noexcept = default;
+    ~ArraySequence() override = default;
     T GetFirst() const override {
         if (array->size() == 0)
             throw IndexOutOfRange();
-        return array->Get(0);
+        return (*array)[0];
     }
     T GetLast() const override {
         if (array->size() == 0)
             throw IndexOutOfRange();
-        return array->Get(array->GetSize() - 1);
+        return (*array)[array->size() - 1];
     }
 
     T Get(int index) const override {
         if (index < 0 || index >= array->size())
             throw IndexOutOfRange();
-        return array->Get(index);
+        return (*array)[index];
     }
 
     Sequence<T>* GetSubsequence(int start, int end) const override {
         if (start < 0 || end >= array->size() || start > end)
             throw IndexOutOfRange();
-        T* subArray = new T[end - start + 1];
-        for (int i = start; i <= end; ++i) subArray[i - start] = array->Get(i);
-        return new ArraySequence<T>(subArray, end - start + 1);
+        auto subArray = std::make_unique<Dynamic_array<T>>(end - start + 1);
+        for (int i = start; i <= end; ++i) {
+            subArray->Set(i - start, (*array)[i]);
+        }
+        return new ArraySequence<T>(std::move(subArray));
     }
     int GetLength() const override { return array->size(); }
     Sequence<T>* Append(T item) override {
         array->push_back(item);
+        return this;
     }
 
     Sequence<T>* Prepend(T item) override {
-        Dynamic_array<T> minor;
-        minor.push_back(item);
-        for (int i = 0; i < array->size(); i++)
-        {
-            minor.push_back(array[i]);
+        auto newArray = std::make_unique<Dynamic_array<T>>(array->size() + 1);
+        newArray->Set(0, item);
+        for (int i = 0; i < array->size(); i++) {
+            newArray->Set(i + 1, (*array)[i]);
         }
-        array = minor;
+        array = std::move(newArray);
+        return this;
     }
 
     Sequence<T>* InsertAt(T item, int index) override {
-        array->Set(index,item);
+        if (index < 0 || index > array->size())
+            throw IndexOutOfRange();
+        array->resize(array->size() + 1);
+        for (int i = array->size() - 1; i > index; --i) {
+            (*array)[i] = (*array)[i - 1];
+        }
+        (*array)[index] = item;
+        return this;
     }
     Sequence<T>* AppendImmut(T item) override{
-        ArraySequence<T> mut = array;
-        mut.Append(item);
-        return mut;
+        auto copy = std::make_unique<ArraySequence<T>>(*this);
+        copy->Append(item);
+        return copy.release();
     }
 
     Sequence<T>* Concat(Sequence<T>* other) override {
@@ -69,6 +100,7 @@ public:
         {
             array->push_back(other->Get(i));
         }
+        return this;
     }
     T& operator[](int index) override { return (*array)[index]; }
     const T& operator[](int index) const override { return (*array)[index]; }
